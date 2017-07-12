@@ -8,9 +8,13 @@
 </ion-header>
 
 <ion-content>
+  <button padding ion-button icon-end (click)="refresh()">Refresh <ion-icon name="refresh"> </ion-icon></button>
+  <button ion-button icon-only color="light" (click)="fontSizeChange(-0.2)"><ion-icon name="remove"></ion-icon></button>
+  <button ion-button icon-only color="light" (click)="fontSizeChange(0.2)"><ion-icon name="add"></ion-icon></button>
+  
     <ion-list>
-    <button ion-item *ngFor="let item of items">
+    <ion-item text-center *ngFor="let item of items">
       {{item.title}}
-    </button>
+    </ion-item>
   </ion-list>
 </ion-content>

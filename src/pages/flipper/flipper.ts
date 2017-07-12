@@ -18,6 +18,11 @@ export class FlipperPage {
       });
     }
   }
+  
+  refresh(event) {
+    this.navCtrl.pop();
+    this.navCtrl.push(FlipperPage);
+  }
 }
 
 
@@ -35,3 +40,6 @@ function makeLine(charLength, isLower) {
   }
   return text;
 }
+
+
+
