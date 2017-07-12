@@ -7,14 +7,15 @@ import { NavController } from 'ionic-angular';
 })
 export class FlipperPage {
   selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{title:string}>;
+
 
   constructor(public navCtrl : NavController) {
-    var innerHTML = "";
-      for (var i = 0; i < 20; i++) {
-      var nextLine = makeLine(5, false);
-      innerHTML += nextLine;
+    this.items = [];
+    for (let i = 1; i < 11; i++) {
+      this.items.push({
+        title: makeLine(5 + Math.floor(Math.random() * 2), false)
+      });
     }
   }
 }
@@ -32,6 +33,5 @@ function makeLine(charLength, isLower) {
     for (var i = 0; i < 5; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
-  text += "<br/>";
   return text;
 }

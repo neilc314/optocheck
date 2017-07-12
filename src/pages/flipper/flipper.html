@@ -7,6 +7,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <p ng-bind-html="string"></p>
+<ion-content>
+    <ion-list>
+    <button ion-item *ngFor="let item of items">
+      {{item.title}}
+    </button>
+  </ion-list>
 </ion-content>
