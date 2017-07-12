@@ -13,7 +13,7 @@
   <button ion-button icon-only color="light" (click)="fontSizeChange(0.2)"><ion-icon name="add"></ion-icon></button>
   
     <ion-list>
-    <ion-item text-center *ngFor="let item of items">
+    <ion-item text-center *ngFor="let item of items" [ngStyle]="{'font-size': fontSize+'rem' }">
       {{item.title}}
     </ion-item>
   </ion-list>

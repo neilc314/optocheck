@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 export class FlipperPage {
   selectedItem: any;
   items: Array<{title:string}>;
+  fontSize: number = 1.5;
 
 
   constructor(public navCtrl : NavController) {
@@ -22,6 +23,10 @@ export class FlipperPage {
   refresh(event) {
     this.navCtrl.pop();
     this.navCtrl.push(FlipperPage);
+  }
+
+  fontSizeChange($val: number){
+    this.fontSize +=$val;
   }
 }
 
