@@ -10,7 +10,7 @@ export class FlipperPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl) {
+  constructor(public navCtrl : NavController) {
 
   }
 }

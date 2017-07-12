@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FlipperPage } from "../flipper/flipper";
 
 @Component({
   selector: 'page-home',
@@ -25,7 +26,7 @@ export class HomePage {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(HomePage, {
+    this.navCtrl.push(FlipperPage, {
       item: item
     });
   }
