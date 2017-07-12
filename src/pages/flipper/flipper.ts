@@ -11,9 +11,15 @@ export class FlipperPage {
   items: Array<{title: string, note: string, icon: string}>;
 
   constructor(public navCtrl : NavController) {
-
+    var innerHTML = "";
+      for (var i = 0; i < 20; i++) {
+      var nextLine = makeLine(5, false);
+      innerHTML += nextLine;
+    }
   }
 }
+
+
 
 function makeLine(charLength, isLower) {
   var text = "";
