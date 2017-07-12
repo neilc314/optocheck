@@ -14,3 +14,18 @@ export class FlipperPage {
 
   }
 }
+
+function makeLine(charLength, isLower) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var possibleLower = "abcdefghijklmnopqrstuvwxyz";
+  if (isLower) {
+    for (var i = 0; i < 5; i++)
+      text += possibleLower.charAt(Math.floor(Math.random() * possible.length));
+  } else {
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  text += "<br/>";
+  return text;
+}
