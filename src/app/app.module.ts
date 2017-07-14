@@ -14,7 +14,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    FlipperPage
+    FlipperPage,
+    PyramidPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    FlipperPage
+    FlipperPage,
+    PyramidPage
   ],
   providers: [
     StatusBar,
