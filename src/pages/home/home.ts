@@ -19,13 +19,17 @@ export class HomePage {
     this.items = [];
     this.items.push({
       title: "Flipper",
-      note: "Quickly adapt to different lens powers",
+      note: "",
       icon: "eye"
+    });
+      this.items.push({
+      title: "Pyramid",
+      note: "",
+      icon: "triangle"
     });
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(FlipperPage, {
       item: item
     });
