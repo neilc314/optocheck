@@ -37,7 +37,7 @@ export class HomePage {
           item: item
         });
         break;
-      case "Pyramid":
+      case "Snellen Chart":
         this.navCtrl.push(PyramidPage, {
           item: item
         });
