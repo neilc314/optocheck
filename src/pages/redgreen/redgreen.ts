@@ -42,13 +42,15 @@ export class RedgreenPage {
     this.redX = Math.floor(this.platform.width() / 2);
 
     this.refreshCanvas();
+  }
 
-
-
+  shift($val: number){
+    this.greenX += $val * 5;
+    this.refreshCanvas();
   }
 
   refreshCanvas() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
     this.drawSailboat(this.ctx, 'green', this.greenX, 0);
     this.drawSailboat(this.ctx, 'red', this.redX, 0);
   }

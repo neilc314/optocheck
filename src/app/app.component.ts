@@ -27,7 +27,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Flipper', component: FlipperPage  },
       { title: 'Pyramid', component: PyramidPage  },
-      { title: 'Red and Green', component: RedgreenPage  }
+      { title: 'Tranaglyph', component: RedgreenPage  }
     ];
 
   }
