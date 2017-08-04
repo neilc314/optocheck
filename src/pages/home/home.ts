@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FlipperPage } from "../flipper/flipper";
 import { PyramidPage } from "../pyramid/pyramid";
+import { RedgreenPage } from "../redgreen/redgreen";
 
 @Component({
   selector: 'page-home',
@@ -28,6 +29,11 @@ export class HomePage {
       note: "",
       icon: "funnel"
     });
+    this.items.push({
+      title: "Red and Green",
+      note: "",
+      icon: "eye"
+    });
   }
 
   itemTapped(event, item) {
@@ -39,6 +45,11 @@ export class HomePage {
         break;
       case "Snellen Chart":
         this.navCtrl.push(PyramidPage, {
+          item: item
+        });
+        break;
+      case "Red and Green":
+        this.navCtrl.push(RedgreenPage, {
           item: item
         });
         break;

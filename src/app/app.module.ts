@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FlipperPage } from '../pages/flipper/flipper';
 import { PyramidPage } from '../pages/pyramid/pyramid';
+import { RedgreenPage } from '../pages/redgreen/redgreen';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     FlipperPage,
-    PyramidPage
+    PyramidPage,
+    RedgreenPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     FlipperPage,
-    PyramidPage
+    PyramidPage, 
+    RedgreenPage
+
   ],
   providers: [
     StatusBar,
