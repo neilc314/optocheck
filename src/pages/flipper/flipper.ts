@@ -21,8 +21,14 @@ export class FlipperPage {
   }
   
   refresh(event) {
-    this.navCtrl.pop();
-    this.navCtrl.push(FlipperPage);
+    for (let i = 1; i < 11; i++) {
+      this.items.pop();
+    }
+    for (let i = 1; i < 11; i++) {
+      this.items.push({
+        title: makeLine(5 + Math.floor(Math.random() * 2), false)
+      });
+    }
   }
 
   fontSizeChange($val: number){
