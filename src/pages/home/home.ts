@@ -30,7 +30,7 @@ export class HomePage {
       icon: "funnel"
     });
     this.items.push({
-      title: "Red and Green",
+      title: "Tranaglyph",
       note: "",
       icon: "eye"
     });

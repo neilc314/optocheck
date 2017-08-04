@@ -39,12 +39,16 @@ export class RedgreenPage {
   }
 
   drawSailboat(context, color, x, y) {
+    context.globalAlpha = 0.5;
     if (color == 'red') {
       context.fillStyle = "rgb(255, 0, 0)";
       context.strokeStyle = "rgb(255, 0, 0)";
+    } else if (color == 'green') {
+      context.fillStyle = "rgb(0, 255, 125)";
+      context.strokeStyle = "rgb(0, 255, 125)";
     } else {
-      context.fillStyle = "rgb(0, 255, 0)";
-      context.strokeStyle = "rgb(0, 255, 0)";
+      console.log('invalid color requested: ' + color);
+      return;
     }
 		context.lineWidth = 2;
 		context.beginPath();
