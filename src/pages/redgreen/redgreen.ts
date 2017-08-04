@@ -20,6 +20,7 @@ export class RedgreenPage {
   ctx: any;
   greenX: number;
   redX: number;
+  shiftVal: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
       public platform: Platform) {
@@ -40,12 +41,14 @@ export class RedgreenPage {
 
     this.greenX = Math.floor(this.platform.width() / 2);
     this.redX = Math.floor(this.platform.width() / 2);
+    this.shiftVal = 0;
 
     this.refreshCanvas();
   }
 
   shift($val: number){
     this.greenX += $val * 5;
+    this.shiftVal += $val;
     this.refreshCanvas();
   }
 

@@ -16,5 +16,6 @@
 <ion-content padding>
   <button ion-button icon-only color="light" (click)="shift(-2)"><ion-icon name="remove"></ion-icon></button>
   <button ion-button icon-only color="light" (click)="shift(2)"><ion-icon name="add"></ion-icon></button>
+  <p ng-bind="shiftVal">{{ shiftVal }}</p>
   <canvas #myCanvas></canvas>
 </ion-content>
