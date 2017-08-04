@@ -21,6 +21,7 @@ export class RedgreenPage {
   greenX: number;
   redX: number;
   shiftVal: number;
+  divCon: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
       public platform: Platform) {
@@ -35,7 +36,7 @@ export class RedgreenPage {
     this.canvasElement = this.canvas.nativeElement;
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', 200 + "");
 
     this.ctx = this.canvasElement.getContext('2d');
 
@@ -49,13 +50,29 @@ export class RedgreenPage {
   shift($val: number){
     this.greenX += $val * 5;
     this.shiftVal += $val;
+    if (this.shiftVal == 0) {
+      this.divCon = "";
+    } else if (this.shiftVal < 0) {
+      this.divCon = "Convergent";
+    } else {
+      this.divCon = "Divergent";
+    }
     this.refreshCanvas();
+  }
+
+  reset() {
+    this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', 200 + "");
+    this.greenX = Math.floor(this.platform.width() / 2);
+    this.redX = Math.floor(this.platform.width() / 2);
+    this.shiftVal = 0;
+    this.shift(0);
   }
 
   refreshCanvas() {
     this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
-    this.drawSailboat(this.ctx, 'green', this.greenX, 0);
-    this.drawSailboat(this.ctx, 'red', this.redX, 0);
+    this.drawSailboat(this.ctx, 'green', this.greenX - 120, 0);
+    this.drawSailboat(this.ctx, 'red', this.redX - 120, 0);
   }
 
   drawSailboat(context, color, x, y) {
