@@ -48,7 +48,7 @@ export class HomePage {
           item: item
         });
         break;
-      case "Red and Green":
+      case "Tranaglyph":
         this.navCtrl.push(RedgreenPage, {
           item: item
         });

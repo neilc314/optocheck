@@ -17,6 +17,9 @@ export class RedgreenPage {
 
   @ViewChild('myCanvas') canvas: any;
   canvasElement: any;
+  ctx: any;
+  greenX: number;
+  redX: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
       public platform: Platform) {
@@ -32,10 +35,14 @@ export class RedgreenPage {
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
     this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
-    
-    let ctx = this.canvasElement.getContext('2d');
-    this.drawSailboat(ctx, 'red', 0, 0);
-    this.drawSailboat(ctx, 'green', 50, 0);
+
+    this.ctx = this.canvasElement.getContext('2d');
+
+    this.greenX = Math.floor(this.platform.width() / 2);
+    this.redX = Math.floor(this.platform.width() / 2);
+
+    this.drawSailboat(this.ctx, 'green', this.greenX, 0);
+    this.drawSailboat(this.ctx, 'red', this.redX, 0);
   }
 
   drawSailboat(context, color, x, y) {
@@ -44,8 +51,8 @@ export class RedgreenPage {
       context.fillStyle = "rgb(255, 0, 0)";
       context.strokeStyle = "rgb(255, 0, 0)";
     } else if (color == 'green') {
-      context.fillStyle = "rgb(0, 255, 125)";
-      context.strokeStyle = "rgb(0, 255, 125)";
+      context.fillStyle = "rgb(0, 225, 180)";
+      context.strokeStyle = "rgb(0, 225, 180)";
     } else {
       console.log('invalid color requested: ' + color);
       return;
