@@ -26,7 +26,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Flipper', component: FlipperPage  },
-      { title: 'Pyramid', component: PyramidPage  },
+      // { title: 'Pyramid', component: PyramidPage  },
       { title: 'Tranaglyph', component: RedgreenPage  }
     ];
 
