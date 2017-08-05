@@ -21,6 +21,7 @@ export class RedgreenPage {
   greenX: number;
   redX: number;
   shiftVal: number;
+  prettyShift: string;
   divCon: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
@@ -48,8 +49,38 @@ export class RedgreenPage {
   }
 
   shift($val: number){
-    this.greenX += $val * 5;
-    this.shiftVal += $val;
+    console.log(this.greenX);
+    console.log(this.redX);
+    console.log(this.platform.width());
+
+    // start shifting red if green is at the edge of the screen
+    // green at right edge
+    if (this.greenX > this.platform.width() - 100) {
+      if ($val > 0) {
+        this.redX -= $val * 5;
+      } else if (this.redX == Math.floor(this.platform.width() / 2)) {
+        this.greenX += $val * 5;
+      } else {
+        this.redX -= $val * 5;
+      }
+    }
+    // green at left edge
+    else if (this.greenX < 100) {
+      if ($val < 0) {
+        this.redX -= $val * 5;
+      } else if (this.redX == Math.floor(this.platform.width() / 2)) {
+        this.greenX += $val * 5;
+      } else {
+        this.redX -= $val * 5;
+      }
+    }
+    // otherwise, shift green as usual
+    else {
+      this.greenX += $val * 5;
+    }
+    
+    this.shiftVal += $val / 5;
+    this.prettyShift = this.shiftVal.toFixed(1);
     if (this.shiftVal == 0) {
       this.divCon = "";
     } else if (this.shiftVal < 0) {
@@ -87,7 +118,9 @@ export class RedgreenPage {
       console.log('invalid color requested: ' + color);
       return;
     }
-		context.lineWidth = 2;
+    context.lineWidth = 2;
+    
+    // base
 		context.beginPath();
 		context.moveTo(25+x, 160+y);
 		context.lineTo(70+x, 180+y);
