@@ -24,11 +24,11 @@ export class HomePage {
       note: "",
       icon: "eye"
     });
-      this.items.push({
-      title: "Snellen Chart",
-      note: "",
-      icon: "funnel"
-    });
+    //   this.items.push({
+    //   title: "Snellen Chart",
+    //   note: "",
+    //   icon: "funnel"
+    // });
     this.items.push({
       title: "Tranaglyph",
       note: "",

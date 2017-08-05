@@ -28,7 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     FlipperPage,
-    PyramidPage, 
+    // PyramidPage, 
     RedgreenPage
 
   ],
