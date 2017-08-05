@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FlipperPage } from "../flipper/flipper";
 import { PyramidPage } from "../pyramid/pyramid";
 import { RedgreenPage } from "../redgreen/redgreen";
+import { BeadsPage } from '../beads/beads';
 
 @Component({
   selector: 'page-home',
@@ -34,6 +35,11 @@ export class HomePage {
       note: "",
       icon: "eye"
     });
+    this.items.push({
+      title: "Brock String",
+      note: "",
+      icon: "disc"
+    });
   }
 
   itemTapped(event, item) {
@@ -50,6 +56,11 @@ export class HomePage {
         break;
       case "Tranaglyph":
         this.navCtrl.push(RedgreenPage, {
+          item: item
+        });
+        break;
+      case "Brock String":
+        this.navCtrl.push(BeadsPage, {
           item: item
         });
         break;

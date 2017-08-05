@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { FlipperPage } from '../pages/flipper/flipper';
 import { PyramidPage } from '../pages/pyramid/pyramid';
 import { RedgreenPage } from '../pages/redgreen/redgreen';
+import { BeadsPage } from '../pages/beads/beads';
+
 
 
 @Component({
@@ -27,7 +29,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Flipper', component: FlipperPage  },
       // { title: 'Pyramid', component: PyramidPage  },
-      { title: 'Tranaglyph', component: RedgreenPage  }
+      { title: 'Tranaglyph', component: RedgreenPage  },
+      { title: 'Brock String', component: BeadsPage  }
     ];
 
   }
