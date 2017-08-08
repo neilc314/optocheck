@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -13,12 +14,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'cube.html',
 })
 export class CubePage {
+  @ViewChild('glCanvas') canvas: any;
+  canvasElement: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CubePage');
   }
+  
+  ngAfterViewInit() {
+    console.log(this.canvas);
+    this.canvasElement = this.canvas.nativeElement;
+
+    this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
+  }
+
 
 }
