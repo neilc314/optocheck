@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+
 import { FlipperPage } from "../flipper/flipper";
 import { PyramidPage } from "../pyramid/pyramid";
 import { RedgreenPage } from "../redgreen/redgreen";
 import { BeadsPage } from '../beads/beads';
+import { CubePage } from '../cube/cube';
 
 @Component({
   selector: 'page-home',
@@ -40,6 +42,11 @@ export class HomePage {
       note: "",
       icon: "disc"
     });
+    this.items.push({
+      title: "Cube",
+      note: "",
+      icon: "cube-outline"
+    });
   }
 
   itemTapped(event, item) {
@@ -61,6 +68,11 @@ export class HomePage {
         break;
       case "Brock String":
         this.navCtrl.push(BeadsPage, {
+          item: item
+        });
+        break;
+      case "Cube":
+        this.navCtrl.push(CubePage, {
           item: item
         });
         break;

@@ -8,6 +8,8 @@ import { FlipperPage } from '../pages/flipper/flipper';
 import { PyramidPage } from '../pages/pyramid/pyramid';
 import { RedgreenPage } from '../pages/redgreen/redgreen';
 import { BeadsPage } from '../pages/beads/beads';
+import { CubePage } from '../pages/cube/cube';
+
 
 
 
@@ -30,7 +32,8 @@ export class MyApp {
       { title: 'Flipper', component: FlipperPage  },
       // { title: 'Pyramid', component: PyramidPage  },
       { title: 'Tranaglyph', component: RedgreenPage  },
-      { title: 'Brock String', component: BeadsPage  }
+      { title: 'Brock String', component: BeadsPage  }, 
+      { title: 'Cube', component: CubePage}
     ];
 
   }
