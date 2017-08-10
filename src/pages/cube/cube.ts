@@ -17,6 +17,11 @@ export class CubePage {
   @ViewChild('glCanvas') canvas: any;
   canvasElement: any;
   ctx: any;
+  radius: number;
+  leftBallX: number;
+  leftBallY: number;
+  rightBallX: number;
+  rightBallY: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform) {
   }
@@ -27,6 +32,7 @@ export class CubePage {
   
   ngAfterViewInit() {
     console.log(this.canvas);
+    this.radius = 25;
     this.canvasElement = this.canvas.nativeElement;
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
@@ -38,7 +44,7 @@ export class CubePage {
   draw() {
     this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
     this.drawCenterLine();
-    this.drawBall(100, 100);
+    this.drawBall(100, 100, 'lightblue');
   }
 
   drawCenterLine() {
@@ -48,10 +54,18 @@ export class CubePage {
     this.ctx.stroke();
   }
 
-  drawBall(x: number, y: number) {
+  updateLeftBall() {
+
+  }
+
+  updateRightBall() {
+
+  }
+
+  drawBall(x: number, y: number, fillStyle: string) {
     this.ctx.beginPath();
-    this.ctx.arc(x, y, 25, 0, 2 * Math.PI, false);
-    this.ctx.fillStyle = 'lightblue';
+    this.ctx.arc(x, y, this.radius, 0, 2 * Math.PI, false);
+    this.ctx.fillStyle = fillStyle;
     this.ctx.fill();
   }
 
