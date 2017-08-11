@@ -41,6 +41,9 @@ export class CubePage {
 
     this.leftBallX = this.radius;
     this.leftBallY = this.radius + 5;
+
+    this.rightBallX = Math.floor(this.platform.width() / 2) + this.radius;
+    this.rightBallY = this.radius + 5;
     
     this.start();
   }
@@ -59,27 +62,36 @@ export class CubePage {
   cycle() {
     console.log("x: " + this.leftBallX + "  y: " + this.leftBallY);
     if ((this.leftBallX < this.platform.width() / 2 - this.radius - 10) && (this.leftBallY < this.radius + 10)) {
+      // upper left to upper right
       this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
       this.drawCenterLine();
       this.updateLeftBall(this.leftBallX + 5, this.leftBallY);
-      // this.updateRightBall(this.rightBallX + 5, this.rightBallY);
-      // this.drawRightBall();
+      this.updateRightBall(this.rightBallX + 5, this.rightBallY);
+      this.drawRightBall();
       this.drawLeftBall();
     } else if (!(this.leftBallX < this.platform.width() / 2 - this.radius - 10) && (this.leftBallY < this.platform.height() - this.radius - 75)) {
+      // upper right to lower right
       this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
       this.drawCenterLine();
       this.updateLeftBall(this.leftBallX, this.leftBallY + 5);
+      this.updateRightBall(this.rightBallX, this.rightBallY + 5);
+      this.drawRightBall();
       this.drawLeftBall();
     } else if (this.leftBallX > this.radius + 5) {
+      // lower right to lower left
       this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
       this.drawCenterLine();
       this.updateLeftBall(this.leftBallX - 5, this.leftBallY);
-      
+      this.updateRightBall(this.rightBallX - 5, this.rightBallY);
+      this.drawRightBall();
       this.drawLeftBall();     
     } else {
+      // lower left to upper left
       this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
       this.drawCenterLine();
       this.updateLeftBall(this.leftBallX, this.leftBallY - 5);
+      this.updateRightBall(this.rightBallX, this.rightBallY - 5);
+      this.drawRightBall();
       this.drawLeftBall();     
     }
     window.requestAnimationFrame(()=>{this.cycle()});
