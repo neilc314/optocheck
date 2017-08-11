@@ -38,13 +38,11 @@ export class CubePage {
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
     this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
     this.ctx = this.canvasElement.getContext('2d');
-    this.draw();
-  }
 
-  draw() {
-    this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
-    this.drawCenterLine();
-    this.drawBall(100, 100, 'lightblue');
+    this.leftBallX = 5;
+    this.leftBallY = 5;
+    
+    window.requestAnimationFrame(this.cycle);
   }
 
   drawCenterLine() {
@@ -54,12 +52,32 @@ export class CubePage {
     this.ctx.stroke();
   }
 
-  updateLeftBall() {
-
+  cycle() {
+    if (this.leftBallX < this.platform.width() / 2) {
+      this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
+      this.drawCenterLine();
+      this.updateLeftBall(this.leftBallX + 5, this.leftBallY);
+      this.drawLeftBall();
+    }
+    window.requestAnimationFrame(this.cycle);
   }
 
-  updateRightBall() {
+  updateLeftBall(x: number, y: number) {
+    this.leftBallX = x;
+    this.leftBallY = y;
+  }
 
+  updateRightBall(x: number, y: number) {
+    this.rightBallX = x;
+    this.rightBallY = y;
+  }
+
+  drawLeftBall() {
+    this.drawBall(this.leftBallX, this.leftBallY, 'lightblue');
+  }
+
+  drawRightBall() {
+    this.drawBall(this.rightBallX, this.rightBallY, 'lightblue');
   }
 
   drawBall(x: number, y: number, fillStyle: string) {
