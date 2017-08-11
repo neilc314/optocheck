@@ -42,7 +42,7 @@ export class CubePage {
     this.leftBallX = 5;
     this.leftBallY = 5;
     
-    window.requestAnimationFrame(this.cycle);
+    window.requestAnimationFrame(()=>{this.cycle()});
   }
 
   drawCenterLine() {
@@ -59,7 +59,7 @@ export class CubePage {
       this.updateLeftBall(this.leftBallX + 5, this.leftBallY);
       this.drawLeftBall();
     }
-    window.requestAnimationFrame(this.cycle);
+    window.requestAnimationFrame(()=>{this.cycle()});
   }
 
   updateLeftBall(x: number, y: number) {
