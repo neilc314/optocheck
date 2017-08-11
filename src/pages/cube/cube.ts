@@ -39,9 +39,13 @@ export class CubePage {
     this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
     this.ctx = this.canvasElement.getContext('2d');
 
-    this.leftBallX = 5;
-    this.leftBallY = 5;
+    this.leftBallX = this.radius;
+    this.leftBallY = this.radius + 5;
     
+    this.start();
+  }
+
+  start() {
     window.requestAnimationFrame(()=>{this.cycle()});
   }
 
@@ -53,11 +57,30 @@ export class CubePage {
   }
 
   cycle() {
-    if (this.leftBallX < this.platform.width() / 2) {
+    console.log("x: " + this.leftBallX + "  y: " + this.leftBallY);
+    if ((this.leftBallX < this.platform.width() / 2 - this.radius - 10) && (this.leftBallY < this.radius + 10)) {
       this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
       this.drawCenterLine();
       this.updateLeftBall(this.leftBallX + 5, this.leftBallY);
+      // this.updateRightBall(this.rightBallX + 5, this.rightBallY);
+      // this.drawRightBall();
       this.drawLeftBall();
+    } else if (!(this.leftBallX < this.platform.width() / 2 - this.radius - 10) && (this.leftBallY < this.platform.height() - this.radius - 75)) {
+      this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
+      this.drawCenterLine();
+      this.updateLeftBall(this.leftBallX, this.leftBallY + 5);
+      this.drawLeftBall();
+    } else if (this.leftBallX > this.radius + 5) {
+      this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
+      this.drawCenterLine();
+      this.updateLeftBall(this.leftBallX - 5, this.leftBallY);
+      
+      this.drawLeftBall();     
+    } else {
+      this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
+      this.drawCenterLine();
+      this.updateLeftBall(this.leftBallX, this.leftBallY - 5);
+      this.drawLeftBall();     
     }
     window.requestAnimationFrame(()=>{this.cycle()});
   }
