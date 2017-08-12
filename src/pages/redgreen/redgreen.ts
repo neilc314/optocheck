@@ -2,6 +2,8 @@ import { Component, ViewChild, Renderer } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
+
 /**
  * Generated class for the RedgreenPage page.
  *
@@ -46,6 +48,10 @@ export class RedgreenPage {
     this.shiftVal = 0;
 
     this.refreshCanvas();
+  }
+
+  instructions() {
+    this.navCtrl.push(InstructionsTranaglyphPage);
   }
 
   shift($val: number){
