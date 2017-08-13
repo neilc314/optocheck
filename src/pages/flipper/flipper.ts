@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { InstructionsFlipperPage } from '../instructions-flipper/instructions-flipper'
+
 @Component({
   selector: 'page-flipper',
   templateUrl: 'flipper.html'
@@ -18,6 +20,10 @@ export class FlipperPage {
         title: makeLine(5 + Math.floor(Math.random() * 2), false)
       });
     }
+  }
+
+  instructions() {
+    this.navCtrl.push(InstructionsFlipperPage);
   }
   
   refresh(event) {
