@@ -2,7 +2,7 @@ import { Component, ViewChild, Renderer } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ScreenOrientation } from 'ionic-native';
+// import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
 
@@ -37,6 +37,7 @@ export class RedgreenPage {
   }
 
   ngAfterViewInit() {
+    // this.screenOrientation.lock('landscape');
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
 
