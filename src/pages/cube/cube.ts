@@ -2,6 +2,8 @@ import { Component, ViewChild, Renderer } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { InstructionsCubePage } from '../instructions-cube/instructions-cube';
+
 /**
  * Generated class for the CubePage page.
  *
@@ -24,6 +26,10 @@ export class CubePage {
   rightBallY: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform) {
+  }
+
+  instructions() {
+    this.navCtrl.push(InstructionsCubePage);
   }
 
   ionViewDidLoad() {
