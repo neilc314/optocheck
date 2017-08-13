@@ -2,6 +2,8 @@ import { Component, ViewChild, Renderer } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { ScreenOrientation } from 'ionic-native';
+
 import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
 
 /**
