@@ -1,5 +1,8 @@
 {
   "name": "optocheck",
   "app_id": "dbe41a08",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }
