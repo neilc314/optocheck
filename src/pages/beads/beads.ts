@@ -17,6 +17,8 @@ export class BeadsPage {
   canvasElement: any;
   ctx: any;
   radius: number;
+  offset: number;
+  angle: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform) {
   }
@@ -34,15 +36,26 @@ export class BeadsPage {
     this.ctx = this.canvasElement.getContext('2d');
 
     this.radius = 25;
+    this.offset = 50;
+    this.angle = 5 * Math.PI / 180;
 
     this.diagram();
   }
   
   diagram() {
+    this.drawLine(this.platform.width() / 2 - this.offset, 0, 
+      this.platform.width() / 2 - this.offset - Math.tan(this.angle) * this.platform.height(), this.platform.height());
+
+    this.drawLine(this.platform.width() / 2 + this.offset, 0, 
+      this.platform.width() / 2 + this.offset + Math.tan(this.angle) * this.platform.height(), this.platform.height());
+
+    this.drawLine(this.platform.width() / 2, 0, this.platform.width() / 2, this.platform.height());
     
-    
-    this.drawBall(this.platform.width() / 2 - this.radius, this.platform.height() / 2, 'lightblue');
-    this.drawBall(this.platform.width() / 2 + this.radius, this.platform.height() / 2, 'lightblue');    
+    this.drawBallOnLine(this.platform.height() / 2 + 80, true, 'lightblue');
+    this.drawBallOnLine(this.platform.height() / 2 + 80, false, 'lightblue');
+
+    this.drawBallOnLine(this.platform.height() / 2 - 80, true, 'red');
+    this.drawBallOnLine(this.platform.height() / 2 - 80, false, 'red');
   }
   
   drawBall(x: number, y: number, fillStyle: string) {
@@ -54,10 +67,18 @@ export class BeadsPage {
 
   drawLine(x1: number, y1: number, x2: number, y2: number) {
     this.ctx.beginPath();
-    this.ctx.moveTo(x1, y2);
+    this.ctx.moveTo(x1, y1);
 		this.ctx.lineTo(x2, y2);
 		this.ctx.closePath();
     this.ctx.stroke();
+  }
+
+  drawBallOnLine(y: number, isLeft: boolean, fillStyle: string) {
+    if (isLeft) {
+      this.drawBall(this.platform.width() / 2 - this.offset - Math.tan(this.angle) * y, y, fillStyle);      
+    } else {
+      this.drawBall(this.platform.width() / 2 + this.offset + Math.tan(this.angle) * y, y, fillStyle);          
+    }
   }
 
 }
