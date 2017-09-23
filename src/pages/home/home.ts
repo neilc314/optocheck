@@ -6,6 +6,7 @@ import { PyramidPage } from "../pyramid/pyramid";
 import { RedgreenPage } from "../redgreen/redgreen";
 import { BeadsPage } from '../beads/beads';
 import { CubePage } from '../cube/cube';
+import { CubeTranaglyphPage } from '../cube-tranaglyph/cube-tranaglyph';
 
 @Component({
   selector: 'page-home',
@@ -47,6 +48,11 @@ export class HomePage {
       note: "",
       icon: "cube-outline"
     });
+    this.items.push({
+      title: "3D Tranaglyph",
+      note: "",
+      icon: "cube-outline"
+    });
   }
 
   itemTapped(event, item) {
@@ -73,6 +79,11 @@ export class HomePage {
         break;
       case "Cube":
         this.navCtrl.push(CubePage, {
+          item: item
+        });
+        break;
+      case "3D Tranaglyph":
+        this.navCtrl.push(CubeTranaglyphPage, {
           item: item
         });
         break;

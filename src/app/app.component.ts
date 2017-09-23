@@ -9,8 +9,7 @@ import { PyramidPage } from '../pages/pyramid/pyramid';
 import { RedgreenPage } from '../pages/redgreen/redgreen';
 import { BeadsPage } from '../pages/beads/beads';
 import { CubePage } from '../pages/cube/cube';
-
-
+import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 
 
 @Component({
@@ -33,7 +32,8 @@ export class MyApp {
       // { title: 'Pyramid', component: PyramidPage  },
       { title: 'Tranaglyph', component: RedgreenPage  },
       { title: 'Brock String', component: BeadsPage  }, 
-      { title: 'Cube', component: CubePage}
+      { title: 'Cube', component: CubePage},
+      { title: '3D Tranaglyph', component: CubeTranaglyphPage}
     ];
 
   }
