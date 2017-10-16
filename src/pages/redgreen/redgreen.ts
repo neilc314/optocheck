@@ -42,7 +42,7 @@ export class RedgreenPage {
     this.canvasElement = this.canvas.nativeElement;
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', 200 + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', 400 + "");
 
     this.ctx = this.canvasElement.getContext('2d');
 
@@ -102,7 +102,7 @@ export class RedgreenPage {
 
   reset() {
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', 200 + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', 400 + "");
     this.greenX = Math.floor(this.platform.width() / 2);
     this.redX = Math.floor(this.platform.width() / 2);
     this.shiftVal = 0;
@@ -118,11 +118,11 @@ export class RedgreenPage {
   drawSailboat(context, color, x, y) {
     context.globalAlpha = 0.5;
     if (color == 'red') {
-      context.fillStyle = "rgb(255, 0, 0)";
-      context.strokeStyle = "rgb(255, 0, 0)";
+      context.fillStyle = "rgb(252, 154, 154)";
+      context.strokeStyle = "rgb(252, 154, 154)";
     } else if (color == 'green') {
-      context.fillStyle = "rgb(0, 225, 180)";
-      context.strokeStyle = "rgb(0, 225, 180)";
+      context.fillStyle = "rgb(208, 255, 194)";
+      context.strokeStyle = "rgb(208, 255, 194)";
     } else {
       console.log('invalid color requested: ' + color);
       return;
@@ -136,7 +136,7 @@ export class RedgreenPage {
 		context.lineTo(150+x, 180+y);
 		context.lineTo(175+x, 160+y);
 		context.closePath();
-		context.stroke();
+		// context.stroke();
 		context.fill();
 		
 		// pole
@@ -158,7 +158,19 @@ export class RedgreenPage {
 		context.moveTo(104+x,50+y);
 		context.lineTo(160+x,150+y);
 		context.lineTo(110+x,150+y);
-		context.fill();
+    context.fill();
+    
+    // circle
+    if (color == 'red') {
+      context.beginPath();
+      context.arc(x+100, y+120, 100, 0, 2 * Math.PI, false);
+      context.stroke();
+    } else {
+      context.beginPath();
+      context.arc(x+110, y+120, 100, 0, 2 * Math.PI, false);
+      context.stroke();
+    }
+
 }
 
 
