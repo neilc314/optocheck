@@ -7,6 +7,8 @@ import { RedgreenPage } from "../redgreen/redgreen";
 import { BeadsPage } from '../beads/beads';
 import { CubePage } from '../cube/cube';
 import { CubeTranaglyphPage } from '../cube-tranaglyph/cube-tranaglyph';
+import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
+import { DragShapePage } from '../drag-shape/drag-shape';
 
 @Component({
   selector: 'page-home',
@@ -53,6 +55,11 @@ export class HomePage {
       note: "",
       icon: "cube-outline"
     });
+    this.items.push({
+      title: 'Drag Shape',
+      note: "",
+      icon: "cube",
+    })
   }
 
   itemTapped(event, item) {
@@ -84,6 +91,11 @@ export class HomePage {
         break;
       case "3D Tranaglyph":
         this.navCtrl.push(CubeTranaglyphPage, {
+          item: item
+        });
+        break;
+      case "Drag Shape":
+        this.navCtrl.push(DragShapePage, {
           item: item
         });
         break;
