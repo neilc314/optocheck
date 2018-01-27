@@ -1,6 +1,7 @@
 import * as Konva from 'konva';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { isObject } from 'ionic-angular/util/util';
 
 /**
  * Generated class for the DragShapePage page.
@@ -38,26 +39,41 @@ export class DragShapePage {
 
     this.layer = new Konva.Layer();
 
+    this.generateShape();
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DragShapePage');
+  }
+
+  restart() {
+    // change objects
+    this.bucketOutline.opacity(0);
+    this.shape.opacity(0);
+  }
+
+  generateShape() {
+    var sides = Math.floor(Math.random() * 8) + 3
+    var radius =  Math.floor(Math.random() * 50) + 50;
     this.shape = new Konva.RegularPolygon({
-      x: 100,
-      y: 150,
-      sides: 6,
-      radius: 70,
+      x: Math.floor(Math.random() * 200) + 100,
+      y: Math.floor(Math.random() * 400) + 100,
+      sides: sides,
+      radius: radius,
       fill: this.redFill,
       opacity: 0.2,
       draggable: true
     });
 
     this.bucketOutline = new Konva.RegularPolygon({
-      x: 200,
-      y: 250,
-      sides: 6,
-      radius: 75,
+      x: Math.floor(Math.random() * 200) + 100,
+      y: Math.floor(Math.random() * 400) + 100,
+      sides: sides,
+      radius: radius,
       stroke: this.blueFill,
       strokeWidth: 10,
       opacity: 0.2
     });
-
 
 
     // add the shape to the layer
@@ -69,16 +85,14 @@ export class DragShapePage {
     this.stage.add(this.layer);
 
     this.stage.on("dragend", () => {
-      var pos = this.stage.getPointerPosition();
-      var shape = this.layer.getIntersection(pos);
-      if (shape) {
-          console.log('hi');
+      console.log('dragend');
+      if ((Math.abs(this.bucketOutline.x() - this.shape.x()) <= 10) && 
+      (Math.abs(this.bucketOutline.y() - this.shape.y()) <= 10) ){
+        this.bucketOutline.opacity(0);
+        this.shape.opacity(0);
+        this.generateShape();
       }
-     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DragShapePage');
+    });
   }
 
 }
