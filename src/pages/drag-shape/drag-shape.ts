@@ -27,7 +27,7 @@ export class DragShapePage {
 
   ngAfterViewInit() {
     this.redFill = '#FF0000';
-    this.blueFill = '#0000FF';
+    this.blueFill = '#00FFFF';
     var width = window.innerWidth;
     var height = window.innerHeight;
 
@@ -65,6 +65,7 @@ export class DragShapePage {
     var shapeType = Math.random() * 3;
     var sides = Math.floor(Math.random() * 8) + 3;
     var radius =  Math.floor(Math.random() * 50) + 50;
+    var opacity = 0.5;
 
     if (shapeType < 1.5) {
       this.shape = new Konva.RegularPolygon({
@@ -73,7 +74,7 @@ export class DragShapePage {
         sides: sides,
         radius: radius,
         fill: this.redFill,
-        opacity: 0.2,
+        opacity: opacity,
         draggable: true
       });
 
@@ -84,7 +85,7 @@ export class DragShapePage {
         radius: radius,
         stroke: this.blueFill,
         strokeWidth: 10,
-        opacity: 0.2
+        opacity: opacity
       });
     } else if (shapeType < 2) {
       this.shape = new Konva.Circle({
@@ -92,7 +93,7 @@ export class DragShapePage {
         y: Math.floor(Math.random() * 400) + 100,
         radius: radius,
         fill: this.redFill,
-        opacity: 0.2,
+        opacity: opacity,
         draggable: true
       });
 
@@ -102,7 +103,7 @@ export class DragShapePage {
         radius: radius,
         stroke: this.blueFill,
         strokeWidth: 10,
-        opacity: 0.2
+        opacity: opacity
       });
     } else {
       this.shape = new Konva.Star({
@@ -112,7 +113,7 @@ export class DragShapePage {
         innerRadius: Math.floor(radius / 2),
         outerRadius: radius,
         fill: this.redFill,
-        opacity: 0.2,
+        opacity: opacity,
         draggable: true
       });
 
@@ -124,7 +125,7 @@ export class DragShapePage {
         outerRadius: radius,
         stroke: this.blueFill,
         strokeWidth: 10,
-        opacity: 0.2
+        opacity: opacity
       });
     }
 
