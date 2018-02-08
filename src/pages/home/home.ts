@@ -9,6 +9,7 @@ import { CubePage } from '../cube/cube';
 import { CubeTranaglyphPage } from '../cube-tranaglyph/cube-tranaglyph';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 import { DragShapePage } from '../drag-shape/drag-shape';
+import { SnakePage } from '../snake/snake';
 
 @Component({
   selector: 'page-home',
@@ -50,8 +51,13 @@ export class HomePage {
       note: "",
       icon: "cube-outline"
     });
+    // this.items.push({
+    //   title: "3D Tranaglyph",
+    //   note: "",
+    //   icon: "cube-outline"
+    // });
     this.items.push({
-      title: "3D Tranaglyph",
+      title: "Snake",
       note: "",
       icon: "cube-outline"
     });
@@ -91,6 +97,11 @@ export class HomePage {
         break;
       case "3D Tranaglyph":
         this.navCtrl.push(CubeTranaglyphPage, {
+          item: item
+        });
+        break;
+      case "Snake":
+        this.navCtrl.push(SnakePage, {
           item: item
         });
         break;

@@ -14,6 +14,7 @@ import { InstructionsFlipperPage } from '../pages/instructions-flipper/instructi
 import { InstructionsTranaglyphPage } from '../pages/instructions-tranaglyph/instructions-tranaglyph';
 import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
+import { SnakePage } from '../pages/snake/snake';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     InstructionsCubePage,
     InstructionsFlipperPage,
     InstructionsTranaglyphPage,
-    CubeTranaglyphPage
+    CubeTranaglyphPage,
+    SnakePage
     
   ],
   imports: [
@@ -44,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     FlipperPage,
+    SnakePage,
     // PyramidPage, 
     RedgreenPage,
     BeadsPage, 

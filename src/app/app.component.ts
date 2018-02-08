@@ -11,6 +11,7 @@ import { BeadsPage } from '../pages/beads/beads';
 import { CubePage } from '../pages/cube/cube';
 import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
+import { SnakePage } from '../pages/snake/snake';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class MyApp {
       { title: 'Brock String', component: BeadsPage  }, 
       { title: 'Cube', component: CubePage},
       { title: '3D Tranaglyph', component: CubeTranaglyphPage},
-      { title: 'Drag Shape', component: DragShapePage}
+      { title: 'Drag Shape', component: DragShapePage},
+      { title: 'Snake', component: SnakePage}
     ];
 
   }
