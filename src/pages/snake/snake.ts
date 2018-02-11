@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -17,7 +17,8 @@ export class SnakePage {
   d: any;
   h: any;
   w: any;
-  canvas: any;
+  @ViewChild('canvas') canvas: any;
+  canvasElement: any;
   ctx: any;
   cw: number;
   food: any;
@@ -34,16 +35,15 @@ export class SnakePage {
   }
 
   ngAfterViewInit() {
-    this.canvas = document.getElementById('canvas')[0];
-    this.ctx = this.canvas.getContext("2d");
-    this.w = document.getElementById('canvas').scrollWidth;
-    this.h = document.getElementById('canvas').scrollHeight;
+    this.ctx = this.canvas.nativeElement.getContext("2d");
+    this.w = this.canvas.nativeElement.scrollWidth;
+    this.h = this.canvas.nativeElement.scrollHeight;
     
     //Lets save the cell width in a variable for easy control
     this.cw = 10;
     
     //Lets create the snake now
-    () => this.init();
+    this.init();
 
         // //Lets add the keyboard controls now
         // $(document).keydown(function(e){
@@ -58,16 +58,17 @@ export class SnakePage {
   }
 
   init()  {
+      console.log('init()');
       this.d = "right"; //default direction
       this.create_snake();
-      this.create_food(); //Now we can see the food particle
+      () => {this.create_food()}; //Now we can see the food particle
       //finally lets display the score
       this.score = 0;
       
       //Lets move the snake now using a timer which will trigger the paint function
       //every 60ms
       if(typeof this.game_loop != "undefined") clearInterval(this.game_loop);
-      this.game_loop = setInterval(() => this.paint, 60);
+      this.game_loop = setInterval(() => {this.paint}, 60);
   }
     
     
@@ -87,6 +88,7 @@ export class SnakePage {
       x: Math.round(Math.random()*(this.w - this.cw)/this.cw), 
       y: Math.round(Math.random()*(this.h - this.cw)/this.cw), 
     };
+    console.log(this.food.x, this.food.y);
     //This will create a cell with x/y between 0-44
     //Because there are 45(450/10) positions accross the rows and columns
   }
@@ -120,7 +122,7 @@ export class SnakePage {
     if(nx == -1 || nx == this.w / this.cw || ny == -1 || ny == this.h/this.cw || this.check_collision(nx, ny, this.snake_array))
     {
       //restart game
-      () => this.init();
+      () => {this.init()};
       //Lets organize the code a bit now.
       return;
     }
@@ -149,11 +151,11 @@ export class SnakePage {
     {
       var c = this.snake_array[i];
       //Lets paint 10px wide cells
-      () => this.paint_cell(c.x, c.y);
+      () => {this.paint_cell(c.x, c.y)};
     }
     
     //Lets paint the food
-    () => this.paint_cell(this.food.x, this.food.y);
+    () => {this.paint_cell(this.food.x, this.food.y)};
     //Lets paint the score
     var score_text = "Score: " + this.score;
     this.ctx.fillText(score_text, 5, this.h - 5);
@@ -161,6 +163,7 @@ export class SnakePage {
     
     //Lets first create a generic function to paint cells
   paint_cell(x, y)  {
+      console.log('painted (' + x + ', ' + y + ')')
       this.ctx.fillStyle = "blue";
       this.ctx.fillRect(x * this.cw, y * this.cw, this.cw, this.cw);
       this.ctx.strokeStyle = "white";
