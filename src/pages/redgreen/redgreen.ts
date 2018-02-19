@@ -111,7 +111,7 @@ export class RedgreenPage {
 
   refreshCanvas() {
     this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
-    this.drawSailboat(this.ctx, 'green', this.greenX - 120, 0);
+    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 0);
     this.drawSailboat(this.ctx, 'red', this.redX - 120, 0);
   }
 
@@ -120,9 +120,11 @@ export class RedgreenPage {
     if (color == 'red') {
       context.fillStyle = "rgb(252, 154, 154)";
       context.strokeStyle = "rgb(252, 154, 154)";
-    } else if (color == 'green') {
-      context.fillStyle = "rgb(208, 255, 194)";
-      context.strokeStyle = "rgb(208, 255, 194)";
+    } else if (color == 'cyan') {
+      // context.fillStyle = "rgb(208, 255, 194)";
+      // context.strokeStyle = "rgb(208, 255, 194)";
+      context.fillStyle = "rgb(0, 255, 255)";
+      context.strokeStyle = "rgb(100, 255, 255)";
     } else {
       console.log('invalid color requested: ' + color);
       return;

@@ -26,11 +26,11 @@ export class HomePage {
     this.selectedItem = navParams.get('item');
 
     this.items = [];
-    this.items.push({
-      title: "Flipper",
-      note: "",
-      icon: "eye"
-    });
+    // this.items.push({
+    //   title: "Flipper",
+    //   note: "",
+    //   icon: "eye"
+    // });
     //   this.items.push({
     //   title: "Snellen Chart",
     //   note: "",
@@ -41,16 +41,16 @@ export class HomePage {
       note: "",
       icon: "eye"
     });
-    this.items.push({
-      title: "Brock String",
-      note: "",
-      icon: "disc"
-    });
-    this.items.push({
-      title: "Cube",
-      note: "",
-      icon: "cube-outline"
-    });
+    // this.items.push({
+    //   title: "Brock String",
+    //   note: "",
+    //   icon: "disc"
+    // });
+    // this.items.push({
+    //   title: "Cube",
+    //   note: "",
+    //   icon: "cube-outline"
+    // });
     // this.items.push({
     //   title: "3D Tranaglyph",
     //   note: "",
@@ -59,12 +59,12 @@ export class HomePage {
     this.items.push({
       title: "Snake",
       note: "",
-      icon: "cube-outline"
+      icon: "basketball"
     });
     this.items.push({
       title: 'Drag Shape',
       note: "",
-      icon: "cube",
+      icon: "exit",
     })
   }
 

@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { FlipperPage } from '../pages/flipper/flipper';
-import { PyramidPage } from '../pages/pyramid/pyramid';
+// import { FlipperPage } from '../pages/flipper/flipper';
+// import { PyramidPage } from '../pages/pyramid/pyramid';
 import { RedgreenPage } from '../pages/redgreen/redgreen';
-import { BeadsPage } from '../pages/beads/beads';
-import { CubePage } from '../pages/cube/cube';
-import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
+// import { BeadsPage } from '../pages/beads/beads';
+// import { CubePage } from '../pages/cube/cube';
+// import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
 import { SnakePage } from '../pages/snake/snake';
 
@@ -30,12 +30,12 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Flipper', component: FlipperPage  },
+      // { title: 'Flipper', component: FlipperPage  },
       // { title: 'Pyramid', component: PyramidPage  },
       { title: 'Tranaglyph', component: RedgreenPage  },
-      { title: 'Brock String', component: BeadsPage  }, 
-      { title: 'Cube', component: CubePage},
-      { title: '3D Tranaglyph', component: CubeTranaglyphPage},
+      // { title: 'Brock String', component: BeadsPage  }, 
+      // { title: 'Cube', component: CubePage},
+      // { title: '3D Tranaglyph', component: CubeTranaglyphPage},
       { title: 'Drag Shape', component: DragShapePage},
       { title: 'Snake', component: SnakePage}
     ];
