@@ -101,10 +101,10 @@ export class HomePage {
         });
         break;
       case "Snake":
-        // this.navCtrl.push(SnakePage, {
-        //   item: item
-        // });
-        window.location.href = "http://app.iconverge.us/snake.html";
+        this.navCtrl.push(SnakePage, {
+          item: item
+        });
+        // window.location.href = "http://app.iconverge.us/snake.html";
         break;
       case "Drag Shape":
         this.navCtrl.push(DragShapePage, {
