@@ -1,5 +1,5 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the SnakePage page.
@@ -17,7 +17,8 @@ export class SnakePage {
   @ViewChild('gameField') canvas: any;
   canvasElement: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform, public alertCtrl: AlertController) {
+    
   }
 
   ionViewDidLoad() {
@@ -31,14 +32,32 @@ export class SnakePage {
     this.renderer.setElementAttribute(this.canvasElement, 'height', Math.min(this.platform.height() - 100, 800) + "");
     const width = Math.min(this.platform.height() - 100, 800);
     const height = Math.min(this.platform.height() - 100, 800);
-    const CELLS_COUNT = 15;
-    const CELL_SIZE = Math.round(width / CELLS_COUNT);
+    let CELLS_COUNT = 15;
+    if (width < 500) {
+      CELLS_COUNT = 10;
+    }
+    const CELL_SIZE = Math.floor(width / CELLS_COUNT);
     let snake = [];
     let food = null;
     let dir = null;
     let lastDir = "none";
     let score = 0;
     let speedCoeff = 1;
+    let newPos = {
+      x: null,
+      y: null
+    }
+    let alert = this.alertCtrl.create({
+      title: 'Game over!',
+      subTitle: 'Your score: ',
+      buttons: [{
+        text: 'Play again',
+        handler: () => {
+          this.navCtrl.pop(); 
+          this.navCtrl.push(SnakePage)
+        }
+      }]
+    });
     const FIELD_COLOR = "#f0f0f0";
     const FOOD_COLOR = 'rgba(0, 255, 255, 0.2)';
     const GRID_COLOR = "#d9d9d9";
@@ -172,6 +191,7 @@ export class SnakePage {
       spawn_food();
     };
     const isContact = function(fieldObj) {
+      if (dir == "none") return false;
       let contact = false;
       for (let i = 0; i < snake.length && !contact; i++) {
         contact = snake[i].x === fieldObj.x && snake[i].y === fieldObj.y;
@@ -192,7 +212,15 @@ export class SnakePage {
       } while (isContact(food) || !isValid(food))
     };
     const step = function(firstTime) {
-      let newPos = {x: 0, y: 0};
+      if (dir == "none" && !firstTime) {
+        setTimeout(step, 200 / speedCoeff);
+        return;
+      }
+      if ((dir === "up" && lastDir == "down") || (dir == "right" && lastDir == "left") || (dir == "down" && lastDir == "up") 
+      || (dir === "left" && lastDir == "right")) {
+        setTimeout(step, 200 / speedCoeff);
+        return;
+      }
       if (dir === "up" && lastDir != "down") {
         newPos = {
           x: snake[0].x,
@@ -218,11 +246,16 @@ export class SnakePage {
         };
         lastDir = "left";
       }
-      if (isContact(newPos)) {
+      if (isContact(newPos) && score > 0) {
+        console.log('troll');
         // alert("Game over!\nYour score: " + score);
         // document.getElementById("gameOver").innerHTML = "<p>Your score: " + score + "</p>";
         // $( "#gameOver" ).dialog( "open");
-        init();
+        alert.setSubTitle('Your score: ' + score);
+        alert.present();
+
+        score = 0;
+        
       } else if (!isValid(newPos)) {
           newPos.x = newPos.x % CELLS_COUNT;
           newPos.y = newPos.y % CELLS_COUNT;
@@ -248,7 +281,7 @@ export class SnakePage {
       }
       if (dir != "none" || firstTime) draw();
       setTimeout(step, 200 / speedCoeff);
-    };
+    }
     init();
     step(true);
   }

@@ -15,7 +15,41 @@ page-snake {
     display: flex;
     justify-content: center;
 }
+@media all and (max-width: 800px) {
+    #controller, #controller2{
+        width: 20vw;
+        height: 20vw;
+        font-size: 20vw;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+    #controller {
+        left: 5% !important;
+    }
+    #controller2 {
+        right: 5% !important;
+    }
+}
 
+@media not all and (max-width: 800px) {
+    #controller, #controller2{
+        width: 200px;
+        height: 200px;
+        font-size: 200px;
+        bottom: 50px;
+    }
+    #controller {
+        left: 5% !important;
+    }
+    #controller2 {
+        right: 5% !important;
+    }
+}
+
+
+
+
+// Joydiv
 .joydiv-controller{
     position:absolute;
     bottom: 50px;
