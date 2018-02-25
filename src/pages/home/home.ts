@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular'; 
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 import { FlipperPage } from "../flipper/flipper";
 import { PyramidPage } from "../pyramid/pyramid";
@@ -11,6 +12,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 import { DragShapePage } from '../drag-shape/drag-shape';
 import { SnakePage } from '../snake/snake';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,7 +23,7 @@ export class HomePage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -81,6 +83,7 @@ export class HomePage {
         });
         break;
       case "Tranaglyph":
+        // this.showBanner(); plugin not installed?
         this.navCtrl.push(RedgreenPage, {
           item: item
         });
@@ -114,5 +117,19 @@ export class HomePage {
     }
 
   }
+  showBanner() {
+    let bannerConfig: AdMobFreeBannerConfig = {
+        isTesting: true, // Remove in production
+        autoShow: true,
+        id: 'ca-app-pub-2057575361319869/2324998752'
+    };
+
+    this.adMob.banner.config(bannerConfig);
+
+    this.adMob.banner.prepare().then(() => {
+        // success
+    }).catch(e => console.log(e));
+
+}
 
 }

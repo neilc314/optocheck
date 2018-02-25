@@ -20,6 +20,7 @@ import { SnakePage } from '../pages/snake/snake';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
   ],
   providers: [
+    AdMobFree,
     NativeAudio,
     StatusBar,
     SplashScreen,

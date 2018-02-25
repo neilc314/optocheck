@@ -13,7 +13,6 @@ import { RedgreenPage } from '../pages/redgreen/redgreen';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
 import { SnakePage } from '../pages/snake/snake';
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -38,8 +37,7 @@ export class MyApp {
       // { title: '3D Tranaglyph', component: CubeTranaglyphPage},
       { title: 'Drag Shape', component: DragShapePage},
       { title: 'Snake', component: SnakePage}
-    ];
-
+    ];    
   }
 
   initializeApp() {
