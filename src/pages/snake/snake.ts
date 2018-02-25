@@ -28,15 +28,23 @@ export class SnakePage {
   ngAfterViewInit() {
     this.canvasElement = this.canvas.nativeElement;
     const context = this.canvasElement.getContext("2d");
-    this.renderer.setElementAttribute(this.canvasElement, 'width', Math.min(this.platform.height() - 100, 800) + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', Math.min(this.platform.height() - 100, 800) + "");
-    const width = Math.min(this.platform.height() - 100, 800);
-    const height = Math.min(this.platform.height() - 100, 800);
+    let width = Math.min(this.platform.height() - 100, 600);
+    let height = Math.min(this.platform.height() - 100, 600);
+
+
     let CELLS_COUNT = 15;
     if (width < 500) {
       CELLS_COUNT = 10;
     }
     const CELL_SIZE = Math.floor(width / CELLS_COUNT);
+
+    width = CELLS_COUNT * CELL_SIZE;
+    height = CELLS_COUNT * CELL_SIZE;
+
+    this.renderer.setElementAttribute(this.canvasElement, 'width', width + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', width + "");
+
+    console.log("width: " + width + ", cell size: " + CELL_SIZE + ", cell count: " + CELLS_COUNT);
     let snake = [];
     let food = null;
     let dir = null;
@@ -102,7 +110,7 @@ export class SnakePage {
     });
     element2.addEventListener('joydiv-changed',function(e){
       var dirt2 = joydiv2.getOneOf4Directions().name;
-      console.log(dir, dirt2);
+      // console.log(dir, dirt2);
       // if (dirt2 !== 'none') {
         if (dirt2 == "left" && dir != 'right') {
         dir = "left";
@@ -199,7 +207,7 @@ export class SnakePage {
       return contact;
     };
     const isValid = function(pos) {
-      return 0 <= pos.x && pos.x < width && 0 <= pos.y && pos.y < height;
+        return 0 <= pos.x && pos.x < width && 0 <= pos.y && pos.y < height;
     }
     const spawn_food = function() {
       do {
@@ -248,6 +256,8 @@ export class SnakePage {
       }
       if (isContact(newPos) && score > 0) {
         console.log('troll');
+        console.log(snake);
+        console.log(newPos);
         // alert("Game over!\nYour score: " + score);
         // document.getElementById("gameOver").innerHTML = "<p>Your score: " + score + "</p>";
         // $( "#gameOver" ).dialog( "open");
