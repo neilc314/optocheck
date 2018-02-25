@@ -1,4 +1,5 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
+import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 /**
@@ -17,7 +18,8 @@ export class SnakePage {
   @ViewChild('gameField') canvas: any;
   canvasElement: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, 
+    public platform: Platform, public alertCtrl: AlertController, public nativeAudio: NativeAudio) {
     
   }
 
@@ -26,6 +28,7 @@ export class SnakePage {
   }
 
   ngAfterViewInit() {
+    this.nativeAudio.preloadSimple('eat', '../src/eat.mp3');
     this.canvasElement = this.canvas.nativeElement;
     const context = this.canvasElement.getContext("2d");
     let width = Math.min(this.platform.height() - 100, 600);
@@ -66,6 +69,8 @@ export class SnakePage {
         }
       }]
     });
+
+    let play = this.nativeAudio.play;
     const FIELD_COLOR = "#f0f0f0";
     const FOOD_COLOR = 'rgba(0, 255, 255, 0.2)';
     const GRID_COLOR = "#d9d9d9";
@@ -277,7 +282,7 @@ export class SnakePage {
           speedCoeff += 0.1;
         }
         spawn_food();
-        // eat.play();
+        // play('eat');  broken :(
         snake.unshift({
           x: newPos.x,
           y: newPos.y
