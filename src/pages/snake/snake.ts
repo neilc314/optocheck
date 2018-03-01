@@ -2,6 +2,8 @@ import { Component, ViewChild, Renderer } from '@angular/core';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
+
 /**
  * Generated class for the SnakePage page.
  *
@@ -19,8 +21,10 @@ export class SnakePage {
   canvasElement: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, 
-    public platform: Platform, public alertCtrl: AlertController, public nativeAudio: NativeAudio) {
-    
+    public platform: Platform, public alertCtrl: AlertController, public nativeAudio: NativeAudio,
+    public screenOrientation: ScreenOrientation) {
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    // console.log('Orientation locked landscape.');
   }
 
   ionViewDidLoad() {

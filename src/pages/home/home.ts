@@ -11,6 +11,7 @@ import { CubeTranaglyphPage } from '../cube-tranaglyph/cube-tranaglyph';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 import { DragShapePage } from '../drag-shape/drag-shape';
 import { SnakePage } from '../snake/snake';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 @Component({
@@ -23,9 +24,10 @@ export class HomePage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, public screenOrientation: ScreenOrientation) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
+    this.screenOrientation.unlock();
 
     this.items = [];
     // this.items.push({
