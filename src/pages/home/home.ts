@@ -67,7 +67,9 @@ export class HomePage {
       title: 'Drag Shape',
       note: "",
       icon: "exit",
-    })
+    });
+
+    this.showBanner();
   }
 
   itemTapped(event, item) {
@@ -119,7 +121,7 @@ export class HomePage {
   }
   showBanner() {
     let bannerConfig: AdMobFreeBannerConfig = {
-        isTesting: true, // Remove in production
+        isTesting: false, // Remove in production
         autoShow: true,
         id: 'ca-app-pub-2057575361319869/2324998752'
     };
@@ -129,7 +131,6 @@ export class HomePage {
     this.adMob.banner.prepare().then(() => {
         // success
     }).catch(e => console.log(e));
-
-}
+  }
 
 }

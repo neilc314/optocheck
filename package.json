@@ -29,6 +29,7 @@
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
     "cordova-admob-sdk": "^0.15.0",
+    "cordova-android": "~6.3.0",
     "cordova-browser": "~5.0.3",
     "cordova-plugin-admob-free": "^0.14.0",
     "cordova-plugin-console": "^1.0.5",
@@ -46,8 +47,7 @@
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
     "three": "^0.87.1",
-    "zone.js": "0.8.12",
-    "cordova-android": "~6.3.0"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.1",
