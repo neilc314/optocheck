@@ -3,6 +3,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SnakePage page.
@@ -19,25 +20,44 @@ export class SnakePage {
   
   @ViewChild('gameField') canvas: any;
   canvasElement: any;
-
+  public unregisterBackButtonAction: any;
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, 
     public platform: Platform, public alertCtrl: AlertController, public nativeAudio: NativeAudio,
     public screenOrientation: ScreenOrientation) {
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    // console.log('Orientation locked landscape.');
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    console.log('Orientation locked landscape.');
+
+    platform.registerBackButtonAction(() => {
+        this.backButtonAction();
+        console.log('bck');
+    });
   }
+
+  backButtonAction(){
+    this.screenOrientation.unlock();
+    this.navCtrl.setRoot(HomePage);
+    }
+  initializeBackButtonCustomHandler(): void {
+        this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
+            console.log('Prevent Back Button Page Change');
+        }, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
+    }       
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SnakePage');
+    this.initializeBackButtonCustomHandler();
   }
 
   ngAfterViewInit() {
     this.nativeAudio.preloadSimple('eat', '../src/eat.mp3');
     this.canvasElement = this.canvas.nativeElement;
     const context = this.canvasElement.getContext("2d");
-    let width = Math.min(this.platform.height() - 100, 600);
+    let width = Math.min(this.platform.width() - 100, 600);
     let height = Math.min(this.platform.height() - 100, 600);
 
+    width = Math.min(width, height);
+    height = width;
 
     let CELLS_COUNT = 15;
     if (width < 500) {

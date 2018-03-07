@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App, ViewController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -12,6 +12,7 @@ import { RedgreenPage } from '../pages/redgreen/redgreen';
 // import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
 import { SnakePage } from '../pages/snake/snake';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public app: App, public screenOrientation: ScreenOrientation) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -39,6 +40,7 @@ export class MyApp {
       { title: 'Snake', component: SnakePage}
     ];    
   }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
