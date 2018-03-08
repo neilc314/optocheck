@@ -13,6 +13,7 @@ import { RedgreenPage } from '../pages/redgreen/redgreen';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
 import { SnakePage } from '../pages/snake/snake';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { GlassConfigPage } from '../pages/glass-config/glass-config';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,7 +38,8 @@ export class MyApp {
       // { title: 'Cube', component: CubePage},
       // { title: '3D Tranaglyph', component: CubeTranaglyphPage},
       { title: 'Drag Shape', component: DragShapePage},
-      { title: 'Snake', component: SnakePage}
+      { title: 'Snake', component: SnakePage},
+      { title: 'Configure', component: GlassConfigPage}
     ];    
   }
 

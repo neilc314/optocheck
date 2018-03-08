@@ -12,6 +12,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 import { DragShapePage } from '../drag-shape/drag-shape';
 import { SnakePage } from '../snake/snake';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { GlassConfigPage } from '../glass-config/glass-config';
 
 
 @Component({
@@ -27,8 +28,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, public screenOrientation: ScreenOrientation) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-
+    
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.items = [];
     // this.items.push({
     //   title: "Flipper",
@@ -71,7 +72,7 @@ export class HomePage {
       icon: "exit",
     });
 
-    this.showBanner();
+    // this.showBanner();
   }
 
   itemTapped(event, item) {
@@ -133,6 +134,10 @@ export class HomePage {
     this.adMob.banner.prepare().then(() => {
         // success
     }).catch(e => console.log(e));
+  }
+
+  openSettings () {
+    this.navCtrl.push(GlassConfigPage);
   }
 
 }

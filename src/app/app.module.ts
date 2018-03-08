@@ -22,6 +22,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { GlassConfigPage } from '../pages/glass-config/glass-config';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     InstructionsFlipperPage,
     InstructionsTranaglyphPage,
     CubeTranaglyphPage,
-    SnakePage
+    SnakePage,
+    GlassConfigPage
     
   ],
   imports: [
@@ -58,7 +60,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     InstructionsFlipperPage,
     InstructionsTranaglyphPage,
     CubeTranaglyphPage,
-    DragShapePage
+    DragShapePage,
+    GlassConfigPage
 
   ],
   providers: [
