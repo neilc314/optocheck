@@ -95,10 +95,21 @@ export class SnakePage {
     });
 
     let play = this.nativeAudio.play;
-    const FIELD_COLOR = "#f0f0f0";
-    const FOOD_COLOR = 'rgba(0, 255, 255, 0.2)';
-    const GRID_COLOR = "#d9d9d9";
-    const SNAKE_COLOR = 'rgba(255,0, 0, 0.2)';
+    let FIELD_COLOR = "#f0f0f0";
+    let FOOD_COLOR = 'rgba(0, 255, 255, 0.2)';
+    let GRID_COLOR = "#d9d9d9";
+    let SNAKE_COLOR = 'rgba(255,0, 0, 0.2)';
+
+    if (window.localStorage.getItem("redFill") != null) {
+        FOOD_COLOR = window.localStorage.getItem("redFill");
+      }
+      if (window.localStorage.getItem("cyanFill") != null) {
+        SNAKE_COLOR = window.localStorage.getItem("cyanFill");
+      }
+      if (window.localStorage.getItem("fieldColor") != null) {
+        FIELD_COLOR = window.localStorage.getItem("fieldColor");
+      }
+
     addEventListener("keydown", function(e) {
       if (e.keyCode === 37 && dir !== "right") {
         dir = "left";
@@ -118,12 +129,6 @@ export class SnakePage {
     var joydiv2 = new JoydivModule.Joydiv({'element':element2});
     element.addEventListener('joydiv-changed',function(e){
       var dirt = joydiv.getOneOf4Directions().name;
-      // if (dirt !== 'none') {
-        // console.log(dirt, dir);
-        // console.log(dirt == "left" && dir != 'right');
-        // console.log(dir == 'left');
-        // console.log(dir == 'up');
-        // console.log(dir == 'down');
         if (dirt == "left" && dir != 'right') {
         dir = "left";
         } else if (dirt == "up" && dir != "down") {
@@ -162,17 +167,6 @@ export class SnakePage {
     const draw_field = function() {
       context.fillStyle = FIELD_COLOR;
       context.fillRect(0, 0, width, height);
-    //   context.strokeStyle = GRID_COLOR;
-    //   for (let i = CELL_SIZE; i < height; i += CELL_SIZE) {
-    //     context.moveTo(0, i);
-    //     context.lineTo(width, i);
-    //     context.stroke();
-    //   }
-    //   for (let i = CELL_SIZE; i < width; i += CELL_SIZE) {
-    //     context.moveTo(i, 0);
-    //     context.lineTo(i, height);
-    //     context.stroke();
-    //   }
     };
     const draw_food = function() {
       context.beginPath();
@@ -284,17 +278,10 @@ export class SnakePage {
         lastDir = "left";
       }
       if (isContact(newPos) && score > 0) {
-        console.log('troll');
-        console.log(snake);
-        console.log(newPos);
-        // alert("Game over!\nYour score: " + score);
-        // document.getElementById("gameOver").innerHTML = "<p>Your score: " + score + "</p>";
-        // $( "#gameOver" ).dialog( "open");
         alert.setSubTitle('Your score: ' + score);
         alert.present();
 
         score = 0;
-        
       } else if (!isValid(newPos)) {
           newPos.x = newPos.x % CELLS_COUNT;
           newPos.y = newPos.y % CELLS_COUNT;
