@@ -14,13 +14,18 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 })
 export class GlassConfigPage {
 
-  redColor: number = 200;
-  cyanColor: number = 200;
-  cyanFine: number = 0;
+  redColor: number = 203;
+  cyanColor: number = 207;
+  cyanFine: number = 5;
+
+  // don't change these
   cyanOpacity: number = 100;
   redOpacity: number = 100;
+
   fieldColor = "#f0f0f0";
   text:  number = 0;
+  redFill: string;
+  cyanFill: string;
 
   @ViewChild('myCanvas') canvas: any;
   canvasElement: any;
@@ -57,12 +62,22 @@ export class GlassConfigPage {
     this.ctx.fillStyle = this.fieldColor;
     this.ctx.fillRect(0, 0, this.width, this.height);
 
+    // define fills
+    this.redFill = "rgba(" + this.redColor + ", 0, 0, " + (this.cyanOpacity / 255) + " )";
+    this.cyanFill = "rgba(" + this.cyanFine + "," + this.cyanColor + ", " + this.cyanColor + ", " + (this.cyanOpacity / 255) + " )";
+
     // fill red
-    this.ctx.fillStyle = "rgba(" + this.redColor + ", 0, 0, " + (this.cyanOpacity / 255) + " )";
+    this.ctx.fillStyle = this.redFill;
     this.ctx.fillRect(25, 25, (this.width - 100) / 2, (this.height - 50));
 
     // fill cyan 
-    this.ctx.fillStyle = "rgba(" + this.cyanFine + "," + this.cyanColor + ", " + this.cyanColor + ", " + (this.cyanOpacity / 255) + " )";
+    this.ctx.fillStyle = this.cyanFill;
     this.ctx.fillRect(this.width / 2 + 10, 25, (this.width - 100) / 2, (this.height - 50) );
+  }
+
+  save() {
+    window.localStorage.setItem('redFill', this.redFill);
+    window.localStorage.setItem('cyanFill', this.cyanFill);
+    this.navCtrl.pop();
   }
 }
