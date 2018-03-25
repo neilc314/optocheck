@@ -32,7 +32,7 @@ export class DragShapePage {
     this.blueFill = '#00FFFF';
     this.fieldColor = "#f0f0f0";
     var width = window.innerWidth;
-    var height = window.innerHeight;
+    var height = window.innerHeight - 56;
 
     if (window.localStorage.getItem("redFill") != null) {
       this.redFill = window.localStorage.getItem("redFill");
@@ -96,7 +96,7 @@ export class DragShapePage {
     if (shapeType < 1.5) {
       this.shape = new Konva.RegularPolygon({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         sides: sides,
         radius: radius,
         fill: this.redFill,
@@ -105,7 +105,7 @@ export class DragShapePage {
 
       this.bucketOutline = new Konva.RegularPolygon({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         sides: sides,
         radius: radius,
         stroke: this.blueFill,
@@ -114,7 +114,7 @@ export class DragShapePage {
     } else if (shapeType < 2) {
       this.shape = new Konva.Circle({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         radius: radius,
         fill: this.redFill,
         draggable: true
@@ -122,7 +122,7 @@ export class DragShapePage {
 
       this.bucketOutline = new Konva.Circle({ 
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         radius: radius,
         stroke: this.blueFill,
         strokeWidth: 10
@@ -130,7 +130,7 @@ export class DragShapePage {
     } else {
       this.shape = new Konva.Star({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         numPoints: sides,
         innerRadius: Math.floor(radius / 2),
         outerRadius: radius,
@@ -140,7 +140,7 @@ export class DragShapePage {
 
       this.bucketOutline = new Konva.Star({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
-        y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
+        y: Math.floor(Math.random() * (window.innerHeight - 256)) + 100,
         numPoints: sides,
         innerRadius: Math.floor(radius / 2),
         outerRadius: radius,
