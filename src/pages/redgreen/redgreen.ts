@@ -28,8 +28,27 @@ export class RedgreenPage {
   prettyShift: string;
   divCon: string;
 
+  fieldColor: string;
+  redFill: string;
+  cyanFill: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
       public platform: Platform) {
+    this.redFill = '#FF0000';
+    this.cyanFill = '#00FFFF';
+    this.fieldColor = "#f0f0f0";
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    if (window.localStorage.getItem("redFill") != null) {
+      this.redFill = window.localStorage.getItem("redFill");
+    }
+    if (window.localStorage.getItem("cyanFill") != null) {
+      this.cyanFill = window.localStorage.getItem("cyanFill");
+    }
+    if (window.localStorage.getItem("fieldColor") != null) {
+      this.fieldColor = window.localStorage.getItem("fieldColor");
+    }
   }
 
   ionViewDidLoad() {
@@ -42,7 +61,7 @@ export class RedgreenPage {
     this.canvasElement = this.canvas.nativeElement;
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', 400 + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
 
     this.ctx = this.canvasElement.getContext('2d');
 
@@ -111,20 +130,22 @@ export class RedgreenPage {
 
   refreshCanvas() {
     this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
-    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 0);
-    this.drawSailboat(this.ctx, 'red', this.redX - 120, 0);
+    this.ctx.fillStyle = this.fieldColor;
+    this.ctx.fillRect(0, 0, this.platform.width(), this.platform.height());
+    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 30);
+    this.drawSailboat(this.ctx, 'red', this.redX - 120, 30);
   }
 
   drawSailboat(context, color, x, y) {
     context.globalAlpha = 0.5;
     if (color == 'red') {
-      context.fillStyle = "rgb(252, 154, 154)";
-      context.strokeStyle = "rgb(252, 154, 154)";
+      context.fillStyle = this.redFill;
+      context.strokeStyle = this.redFill;
     } else if (color == 'cyan') {
       // context.fillStyle = "rgb(208, 255, 194)";
       // context.strokeStyle = "rgb(208, 255, 194)";
-      context.fillStyle = "rgb(0, 255, 255)";
-      context.strokeStyle = "rgb(100, 255, 255)";
+      context.fillStyle = this.cyanFill;
+      context.strokeStyle = this.cyanFill
     } else {
       console.log('invalid color requested: ' + color);
       return;
