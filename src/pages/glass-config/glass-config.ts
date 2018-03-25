@@ -16,6 +16,7 @@ export class GlassConfigPage {
 
   redColor: number = 200;
   cyanColor: number = 200;
+  cyanFine: number = 0;
   cyanOpacity: number = 100;
   redOpacity: number = 100;
   fieldColor = "#f0f0f0";
@@ -61,7 +62,7 @@ export class GlassConfigPage {
     this.ctx.fillRect(25, 25, (this.width - 100) / 2, (this.height - 50));
 
     // fill cyan 
-    this.ctx.fillStyle = "rgba(0, " + this.cyanColor + ", " + this.cyanColor + ", " + (this.cyanOpacity / 255) + " )";
-    this.ctx.fillRect(this.width / 2 + 10, 0, this.width / 2 - 10, this.height -10);
+    this.ctx.fillStyle = "rgba(" + this.cyanFine + "," + this.cyanColor + ", " + this.cyanColor + ", " + (this.cyanOpacity / 255) + " )";
+    this.ctx.fillRect(this.width / 2 + 10, 25, (this.width - 100) / 2, (this.height - 50) );
   }
 }
