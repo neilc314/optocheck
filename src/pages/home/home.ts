@@ -31,36 +31,13 @@ export class HomePage {
     
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.items = [];
-    // this.items.push({
-    //   title: "Flipper",
-    //   note: "",
-    //   icon: "eye"
-    // });
-    //   this.items.push({
-    //   title: "Snellen Chart",
-    //   note: "",
-    //   icon: "funnel"
-    // });
+
     this.items.push({
       title: "Tranaglyph",
       note: "",
       icon: "eye"
     });
-    // this.items.push({
-    //   title: "Brock String",
-    //   note: "",
-    //   icon: "disc"
-    // });
-    // this.items.push({
-    //   title: "Cube",
-    //   note: "",
-    //   icon: "cube-outline"
-    // });
-    // this.items.push({
-    //   title: "3D Tranaglyph",
-    //   note: "",
-    //   icon: "cube-outline"
-    // });
+
     this.items.push({
       title: "Snake",
       note: "",
@@ -71,6 +48,15 @@ export class HomePage {
       note: "",
       icon: "exit",
     });
+
+    if (window.localStorage.getItem('redFill') == null) {
+      window.localStorage.setItem('redColor', "203");
+      window.localStorage.setItem('cyanColor', "207");
+      window.localStorage.setItem('cyanFine', "5");
+      window.localStorage.setItem('redFill', "rgba(203, 0, 0, 0.39215686274509803 )");
+      window.localStorage.setItem('cyanFill', "rgba(5,207, 207, 0.39215686274509803 )");
+      window.localStorage.setItem('fieldColor', "#f0f0f0");
+    }
 
     // this.showBanner();
   }
