@@ -14,6 +14,27 @@
 
 
 <ion-content padding>
-  
+    <canvas id="myCanvas" #myCanvas></canvas>
+    <ion-list class="slider">
+        <ion-list-header>Red Color</ion-list-header>
+        <ion-item>
+          <ion-range min="100" max="255" [(ngModel)]="redColor" color="danger" pin="true"></ion-range>
+        </ion-item>
+        <!-- <ion-list-header>Red Opacity</ion-list-header>
+        <ion-item>
+          <ion-range min="0" max="255" [(ngModel)]="redOpacity" color="danger" pin="true">
+          </ion-range>
+        </ion-item> -->
+        <ion-list-header>Cyan Color</ion-list-header>
+        <ion-item>
+          <ion-range min="100" max="255" [(ngModel)]="cyanColor" color="relaxed" pin="true"></ion-range>
+        </ion-item>
+        <!-- <ion-list-header>Cyan Opacity</ion-list-header>
+        <ion-item>
+          <ion-range min="0" max="255" [(ngModel)]="cyanOpacity" color="relaxed" pin="true">
+          </ion-range>
+        </ion-item> -->
+      
+      </ion-list>
 
 </ion-content>
