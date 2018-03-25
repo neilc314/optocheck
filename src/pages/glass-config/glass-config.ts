@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 })
 export class GlassConfigPage {
 
-  redColor: number = 203;
+  redColor: number;
   cyanColor: number = 207;
   cyanFine: number = 5;
 
@@ -35,6 +35,11 @@ export class GlassConfigPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform: Platform, public renderer: Renderer) {
+
+    this.redColor = 203; 
+    if (window.localStorage.getItem("redColor") != null) this.redFill = window.localStorage.getItem("redColor");
+    if (window.localStorage.getItem("cyanColor") != null) this.redFill = window.localStorage.getItem("cyanColor");
+    if (window.localStorage.getItem("cyanFine") != null) this.redFill = window.localStorage.getItem("cyanFine");
   }
 
   ionViewDidLoad() {
@@ -44,6 +49,8 @@ export class GlassConfigPage {
   ngAfterViewInit() {
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
+
+
 
     this.width = Math.min(this.platform.width(), 400);
     this.height = Math.min(this.platform.height(), 200)
@@ -58,7 +65,7 @@ export class GlassConfigPage {
   }
 
   update() {
-    console.log(this.redColor); // remove in prod
+    // console.log(this.redColor); // remove in prod
     this.ctx.fillStyle = this.fieldColor;
     this.ctx.fillRect(0, 0, this.width, this.height);
 
@@ -76,6 +83,9 @@ export class GlassConfigPage {
   }
 
   save() {
+    window.localStorage.setItem('redColor', this.redColor + "");
+    window.localStorage.setItem('cyanColor', this.cyanColor + "");
+    window.localStorage.setItem('cyanFine', this.cyanFine + "");
     window.localStorage.setItem('redFill', this.redFill);
     window.localStorage.setItem('cyanFill', this.cyanFill);
     this.navCtrl.pop();

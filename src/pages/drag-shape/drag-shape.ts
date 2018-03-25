@@ -31,6 +31,13 @@ export class DragShapePage {
     var width = window.innerWidth;
     var height = window.innerHeight;
 
+    if (window.localStorage.getItem("redFill") != null) {
+      this.redFill = window.localStorage.getItem("redFill");
+    }
+    if (window.localStorage.getItem("cyanFill") != null) {
+      this.blueFill = window.localStorage.getItem("cyanFill");
+    }
+
     this.stage = new Konva.Stage({
       container: 'container',
       width: width,
