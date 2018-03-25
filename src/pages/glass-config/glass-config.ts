@@ -88,6 +88,7 @@ export class GlassConfigPage {
     window.localStorage.setItem('cyanFine', this.cyanFine + "");
     window.localStorage.setItem('redFill', this.redFill);
     window.localStorage.setItem('cyanFill', this.cyanFill);
+    window.localStorage.setItem('fieldColor', this.fieldColor);
     this.navCtrl.pop();
   }
 }

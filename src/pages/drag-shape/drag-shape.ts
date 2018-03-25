@@ -21,13 +21,16 @@ export class DragShapePage {
   bucketOutline: any;
   redFill: string;
   blueFill: string;
+  fieldColor: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ngAfterViewInit() {
     this.redFill = '#FF0000';
     this.blueFill = '#00FFFF';
+    this.fieldColor = "#f0f0f0";
     var width = window.innerWidth;
     var height = window.innerHeight;
 
@@ -37,6 +40,9 @@ export class DragShapePage {
     if (window.localStorage.getItem("cyanFill") != null) {
       this.blueFill = window.localStorage.getItem("cyanFill");
     }
+    if (window.localStorage.getItem("fieldColor") != null) {
+      this.fieldColor = window.localStorage.getItem("fieldColor");
+    }
 
     this.stage = new Konva.Stage({
       container: 'container',
@@ -45,6 +51,16 @@ export class DragShapePage {
     });
 
     this.layer = new Konva.Layer();
+    
+
+    var stageRect =  new Konva.Rect({ 
+      x: 0,
+      y: 0,
+      width: width,
+      height: height,
+      fill: this.fieldColor
+    })
+    this.layer.add(stageRect);
 
     this.stage.on("dragend", () => {
       console.log('dragend');
@@ -63,7 +79,7 @@ export class DragShapePage {
   }
 
   restart() {
-    // change objects
+    // change objects TODO less hack
     this.bucketOutline.opacity(0);
     this.shape.opacity(0);
   }
@@ -75,6 +91,8 @@ export class DragShapePage {
     var radius =  Math.floor(Math.random() * 50) + 50;
     var opacity = 0.5;
 
+    
+
     if (shapeType < 1.5) {
       this.shape = new Konva.RegularPolygon({
         x: Math.floor(Math.random() * (window.innerWidth - 200)) + 100,
@@ -82,7 +100,6 @@ export class DragShapePage {
         sides: sides,
         radius: radius,
         fill: this.redFill,
-        opacity: opacity,
         draggable: true
       });
 
@@ -92,8 +109,7 @@ export class DragShapePage {
         sides: sides,
         radius: radius,
         stroke: this.blueFill,
-        strokeWidth: 10,
-        opacity: opacity
+        strokeWidth: 10
       });
     } else if (shapeType < 2) {
       this.shape = new Konva.Circle({
@@ -101,7 +117,6 @@ export class DragShapePage {
         y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
         radius: radius,
         fill: this.redFill,
-        opacity: opacity,
         draggable: true
       });
 
@@ -110,8 +125,7 @@ export class DragShapePage {
         y: Math.floor(Math.random() * (window.innerHeight - 200)) + 100,
         radius: radius,
         stroke: this.blueFill,
-        strokeWidth: 10,
-        opacity: opacity
+        strokeWidth: 10
       });
     } else {
       this.shape = new Konva.Star({
@@ -121,7 +135,6 @@ export class DragShapePage {
         innerRadius: Math.floor(radius / 2),
         outerRadius: radius,
         fill: this.redFill,
-        opacity: opacity,
         draggable: true
       });
 
@@ -132,8 +145,7 @@ export class DragShapePage {
         innerRadius: Math.floor(radius / 2),
         outerRadius: radius,
         stroke: this.blueFill,
-        strokeWidth: 10,
-        opacity: opacity
+        strokeWidth: 10
       });
     }
 
@@ -145,15 +157,6 @@ export class DragShapePage {
     // add the layer to the stage
     this.stage.add(this.layer);
 
-    // this.stage.on("dragend", () => {
-    //   console.log('dragend');
-    //   if ((Math.abs(this.bucketOutline.x() - this.shape.x()) <= 10) && 
-    //   (Math.abs(this.bucketOutline.y() - this.shape.y()) <= 10) ){
-    //     this.bucketOutline.opacity(0);
-    //     this.shape.opacity(0);
-    //     this.generateShape();
-    //   }
-    // });
   }
 
 }
