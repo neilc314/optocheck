@@ -121,7 +121,8 @@ export class RedgreenPage {
 
   reset() {
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
-    this.renderer.setElementAttribute(this.canvasElement, 'height', 400 + "");
+    this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + "");
+
     this.greenX = Math.floor(this.platform.width() / 2);
     this.redX = Math.floor(this.platform.width() / 2);
     this.shiftVal = 0;
