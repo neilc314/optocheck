@@ -130,6 +130,7 @@ export class RedgreenPage {
   }
 
   refreshCanvas() {
+    this.ctx.globalAlpha = 1;
     this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
     this.ctx.fillStyle = this.fieldColor;
     this.ctx.fillRect(0, 0, this.platform.width(), this.platform.height());
