@@ -63,7 +63,6 @@ export class RedgreenPage {
   ngAfterViewInit() {
     if(this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
 
-    console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
 
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + "");
@@ -75,8 +74,8 @@ export class RedgreenPage {
     this.redX = Math.floor(this.platform.width() / 2);
     this.shiftVal = 0;
 
-    this.refreshCanvas();
     this.reset();
+    this.refreshCanvas();
   }
 
   instructions() {
@@ -137,15 +136,23 @@ export class RedgreenPage {
   }
 
   refreshCanvas() {
+    this.canvasElement.width = this.canvasElement.offsetWidth;
+    this.canvasElement.height = this.canvasElement.offsetHeight;
     this.ctx.globalAlpha = 1;
     this.ctx.clearRect(0, 0, this.platform.width(), 5000);
     this.ctx.fillStyle = this.fieldColor;
     this.ctx.fillRect(0, 0, this.platform.width(), 5000);
-    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75);
-    this.drawSailboat(this.ctx, 'red', this.redX - 120, 75);
+    if (this.platform.height() > 500) {
+      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75, 1);
+      this.drawSailboat(this.ctx, 'red', this.redX - 120, 75, 1);
+    } else if (this.platform.height() > 300) {
+      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75, 0.75);
+      this.drawSailboat(this.ctx, 'red', this.redX - 120, 75, 0.75  );
+    }
+
   }
 
-  drawSailboat(context, color, x, y) {
+  drawSailboat(context, color, x, y, scale) {
     context.globalAlpha = 0.5;
     if (color == 'red') {
       context.fillStyle = this.redFill;
@@ -163,47 +170,43 @@ export class RedgreenPage {
     
     // base
 		context.beginPath();
-		context.moveTo(25+x, 160+y);
-		context.lineTo(70+x, 180+y);
-		context.lineTo(150+x, 180+y);
-		context.lineTo(175+x, 160+y);
+		context.moveTo(25 * scale + x, 160 * scale + y);
+		context.lineTo(70* scale + x, 180 * scale + y);
+		context.lineTo(150* scale + x, 180 * scale + y);
+		context.lineTo(175 * scale + x, 160 * scale + y);
 		context.closePath();
-		// context.stroke();
 		context.fill();
 		
 		// pole
 		context.beginPath();
 		context.lineWidth = 5;
-		context.moveTo(100+x,160+y);
-		context.lineTo(100+x,50+y);
+		context.moveTo(100 * scale + x,160 * scale + y);
+		context.lineTo(100 * scale + x,50 * scale + y);
 		context.stroke();
 		
 		// left sail
 		context.beginPath();
-		context.moveTo(96+x,50+y);
-		context.lineTo(50+x,155+y);
-		context.lineTo(90+x,140+y);
+		context.moveTo(96 * scale + x,50 * scale + y);
+		context.lineTo(50 * scale + x,155 * scale + y);
+		context.lineTo(90 * scale + x,140 * scale + y);
 		context.fill();
 		
 		// right sail
 		context.beginPath();
-		context.moveTo(104+x,50+y);
-		context.lineTo(160+x,150+y);
-		context.lineTo(110+x,150+y);
+		context.moveTo(104 * scale + x,50 * scale + y);
+		context.lineTo(160 * scale + x,150 * scale + y);
+		context.lineTo(110 * scale + x,150 * scale + y);
     context.fill();
     
     // circle
     if (color == 'red') {
       context.beginPath();
-      context.arc(x+100, y+120, 100, 0, 2 * Math.PI, false);
+      context.arc(x + scale * 100, y + scale * 120, 100 * scale, 0, 2 * Math.PI, false);
       context.stroke();
     } else {
       context.beginPath();
-      context.arc(x+110, y+120, 100, 0, 2 * Math.PI, false);
+      context.arc(x + scale * 110, y + scale * 120, 100 * scale, 0, 2 * Math.PI, false);
       context.stroke();
     }
-
-}
-
-
+  }
 }

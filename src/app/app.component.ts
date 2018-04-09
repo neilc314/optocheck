@@ -59,7 +59,7 @@ export class MyApp {
     // if (page.title == 'Snake') {
     //   window.location.href = "http://app.iconverge.us/snake.html";
     // } else {
-      this.nav.setRoot(page.component);
+      this.nav.push(page.component);
     // }
     
   }
