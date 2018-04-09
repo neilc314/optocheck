@@ -1,7 +1,8 @@
 import * as Konva from 'konva';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { isObject } from 'ionic-angular/util/util';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 /**
  * Generated class for the DragShapePage page.
@@ -23,11 +24,14 @@ export class DragShapePage {
   blueFill: string;
   fieldColor: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public screenOrientation: ScreenOrientation, public platform: Platform) {
     
   }
 
   ngAfterViewInit() {
+    if (this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+
     this.redFill = '#FF0000';
     this.blueFill = '#00FFFF';
     this.fieldColor = "#f0f0f0";
@@ -157,6 +161,10 @@ export class DragShapePage {
     // add the layer to the stage
     this.stage.add(this.layer);
 
+  }
+
+  isCordova() {
+    return this.platform.is('cordova');
   }
 
 }

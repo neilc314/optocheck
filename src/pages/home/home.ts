@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular'; 
+import { NavController, NavParams, Platform } from 'ionic-angular'; 
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 import { FlipperPage } from "../flipper/flipper";
@@ -25,13 +25,15 @@ export class HomePage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, public screenOrientation: ScreenOrientation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, 
+    public screenOrientation: ScreenOrientation, public platform: Platform) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    if (this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.items = [];
 
+    // push the pages
     this.items.push({
       title: "Tranaglyph",
       note: "",
@@ -49,6 +51,7 @@ export class HomePage {
       icon: "exit",
     });
 
+    // check if colors exist, if not, add defaults
     if (window.localStorage.getItem('redFill') == null) {
       window.localStorage.setItem('redColor', "203");
       window.localStorage.setItem('cyanColor', "207");
@@ -58,7 +61,9 @@ export class HomePage {
       window.localStorage.setItem('fieldColor', "#f0f0f0");
     }
 
-    // this.showBanner();
+    if (this.isCordova()){
+      this.showBanner();
+    }
   }
 
   itemTapped(event, item) {
@@ -124,6 +129,10 @@ export class HomePage {
 
   openSettings () {
     this.navCtrl.push(GlassConfigPage);
+  }
+
+  isCordova() {
+    return this.platform.is('cordova');
   }
 
 }

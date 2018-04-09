@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 /**
  * Generated class for the RedgreenPage page.
@@ -33,7 +34,7 @@ export class RedgreenPage {
   cyanFill: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer,
-      public platform: Platform) {
+      public platform: Platform, public screenOrientation: ScreenOrientation) {
     this.redFill = '#FF0000';
     this.cyanFill = '#00FFFF';
     this.fieldColor = "#f0f0f0";
@@ -55,8 +56,13 @@ export class RedgreenPage {
     console.log('ionViewDidLoad RedgreenPage');
   }
 
+  isCordova() {
+    return this.platform.is('cordova');
+  }
+
   ngAfterViewInit() {
-    // this.screenOrientation.lock('landscape');
+    if(this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
 
@@ -70,6 +76,7 @@ export class RedgreenPage {
     this.shiftVal = 0;
 
     this.refreshCanvas();
+    this.reset();
   }
 
   instructions() {
@@ -126,16 +133,16 @@ export class RedgreenPage {
     this.greenX = Math.floor(this.platform.width() / 2);
     this.redX = Math.floor(this.platform.width() / 2);
     this.shiftVal = 0;
-    this.shift(0);
+    this.shift(0);  
   }
 
   refreshCanvas() {
     this.ctx.globalAlpha = 1;
-    this.ctx.clearRect(0, 0, this.platform.width(), this.platform.height());
+    this.ctx.clearRect(0, 0, this.platform.width(), 5000);
     this.ctx.fillStyle = this.fieldColor;
-    this.ctx.fillRect(0, 0, this.platform.width(), this.platform.height());
-    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 30);
-    this.drawSailboat(this.ctx, 'red', this.redX - 120, 30);
+    this.ctx.fillRect(0, 0, this.platform.width(), 5000);
+    this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75);
+    this.drawSailboat(this.ctx, 'red', this.redX - 120, 75);
   }
 
   drawSailboat(context, color, x, y) {

@@ -25,8 +25,6 @@ export class SnakePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public renderer: Renderer, 
     public platform: Platform, public alertCtrl: AlertController, public nativeAudio: NativeAudio,
     public screenOrientation: ScreenOrientation) {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    console.log('Orientation locked landscape.');
 
     platform.registerBackButtonAction(() => {
         this.backButtonAction();
@@ -49,12 +47,20 @@ export class SnakePage {
     this.initializeBackButtonCustomHandler();
   }
 
+  isCordova() {
+    return this.platform.is('cordova');
+  }
+
   ngAfterViewInit() {
-    this.nativeAudio.preloadSimple('eat', '../src/eat.mp3');
+    if (this.isCordova()){
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+        this.nativeAudio.preloadSimple('eat', '../src/eat.mp3');
+    }
+
     this.canvasElement = this.canvas.nativeElement;
     const context = this.canvasElement.getContext("2d");
-    let width = Math.min(this.platform.width() - 100, 600);
-    let height = Math.min(this.platform.height() - 100, 600);
+    let width = Math.min(this.platform.width() - 155, 600);
+    let height = Math.min(this.platform.height() - 115, 600);
 
     width = Math.min(width, height);
     height = width;

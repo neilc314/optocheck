@@ -1,5 +1,6 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 /**
  * Generated class for the GlassConfigPage page.
@@ -34,7 +35,7 @@ export class GlassConfigPage {
   height: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public platform: Platform, public renderer: Renderer) {
+    public platform: Platform, public renderer: Renderer, public screenOrientation: ScreenOrientation) {
 
     if (window.localStorage.getItem("redColor") != null) this.redColor = +window.localStorage.getItem("redColor");
     if (window.localStorage.getItem("cyanColor") != null) this.cyanColor = +window.localStorage.getItem("cyanColor");
@@ -46,10 +47,11 @@ export class GlassConfigPage {
   }
 
   ngAfterViewInit() {
+
+    if(this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
-
-
 
     this.width = Math.min(this.platform.width(), 400);
     this.height = Math.min(this.platform.height(), 200)
@@ -89,5 +91,9 @@ export class GlassConfigPage {
     window.localStorage.setItem('cyanFill', this.cyanFill);
     window.localStorage.setItem('fieldColor', this.fieldColor);
     this.navCtrl.pop();
+  }
+
+  isCordova() {
+    return this.platform.is('cordova');
   }
 }
