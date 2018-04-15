@@ -48,7 +48,7 @@ export class GlassConfigPage {
 
   ngAfterViewInit() {
 
-    if(this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    if(this.isCordova() && !this.platform.is('tablet')) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;

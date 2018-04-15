@@ -26,6 +26,7 @@ export class HomePage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  instructions: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, 
     public screenOrientation: ScreenOrientation, public platform: Platform) {
@@ -66,30 +67,33 @@ export class HomePage {
   }
 
   itemTapped(event, item) {
-    if (this.isCordova()){
-      this.showInterstitial();
-    }
-    switch(item.title) {
-      case "Tranaglyph":
-        this.navCtrl.push(RedgreenPage, {
-          item: item
-        });
-        break;
-      case "Snake":
-        this.navCtrl.push(SnakePage, {
-          item: item
-        });
-        // window.location.href = "http://app.iconverge.us/snake.html";
-        break;
-      case "Drag Shape":
-        this.navCtrl.push(DragShapePage, {
-          item: item
-        });
-        break;
+    if (!this.instructions) {
+      if (this.isCordova()){
+        this.showInterstitial();
+      }
+      switch(item.title) {
+        case "Tranaglyph":
+          this.navCtrl.push(RedgreenPage, {
+            item: item
+          });
+          break;
+        case "Snake":
+          this.navCtrl.push(SnakePage, {
+            item: item
+          });
+          // window.location.href = "http://app.iconverge.us/snake.html";
+          break;
+        case "Drag Shape":
+          this.navCtrl.push(DragShapePage, {
+            item: item
+          });
+          break;
+      }
     }
   }
 
   instructionsTapped(event, item) {
+    this.instructions = true;
      switch(item.title) {
       case "Tranaglyph":
         this.navCtrl.push(InstructionsTranaglyphPage, {
