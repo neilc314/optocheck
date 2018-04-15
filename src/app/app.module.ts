@@ -17,12 +17,13 @@ import { CubeTranaglyphPage } from '../pages/cube-tranaglyph/cube-tranaglyph';
 import { DragShapePage } from '../pages/drag-shape/drag-shape';
 import { SnakePage } from '../pages/snake/snake';
 
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { GlassConfigPage } from '../pages/glass-config/glass-config';
+import { InstructionsDragShapePage } from '../pages/instructions-drag-shape/instructions-drag-shape';
+import { InstructionsSnakePage } from '../pages/instructions-snake/instructions-snake';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { GlassConfigPage } from '../pages/glass-config/glass-config';
     InstructionsCubePage,
     InstructionsFlipperPage,
     InstructionsTranaglyphPage,
+    InstructionsDragShapePage,
+    InstructionsSnakePage,
     CubeTranaglyphPage,
     SnakePage,
     GlassConfigPage
@@ -59,6 +62,8 @@ import { GlassConfigPage } from '../pages/glass-config/glass-config';
     InstructionsCubePage,
     InstructionsFlipperPage,
     InstructionsTranaglyphPage,
+    InstructionsDragShapePage,
+    InstructionsSnakePage,
     CubeTranaglyphPage,
     DragShapePage,
     GlassConfigPage

@@ -13,7 +13,9 @@ import { DragShapePage } from '../drag-shape/drag-shape';
 import { SnakePage } from '../snake/snake';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { GlassConfigPage } from '../glass-config/glass-config';
-
+import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
+import { InstructionsSnakePage } from '../instructions-snake/instructions-snake';
+import { InstructionsDragShapePage } from '../instructions-drag-shape/instructions-drag-shape';
 
 @Component({
   selector: 'page-home',
@@ -61,41 +63,15 @@ export class HomePage {
       window.localStorage.setItem('fieldColor', "#f0f0f0");
     }
 
-    if (this.isCordova()){
-      this.showBanner();
-    }
   }
 
   itemTapped(event, item) {
+    if (this.isCordova()){
+      this.showInterstitial();
+    }
     switch(item.title) {
-      case "Flipper":
-        this.navCtrl.push(FlipperPage, {
-          item: item
-        });
-        break;
-      case "Snellen Chart":
-        this.navCtrl.push(PyramidPage, {
-          item: item
-        });
-        break;
       case "Tranaglyph":
-        // this.showBanner(); plugin not installed?
         this.navCtrl.push(RedgreenPage, {
-          item: item
-        });
-        break;
-      case "Brock String":
-        this.navCtrl.push(BeadsPage, {
-          item: item
-        });
-        break;
-      case "Cube":
-        this.navCtrl.push(CubePage, {
-          item: item
-        });
-        break;
-      case "3D Tranaglyph":
-        this.navCtrl.push(CubeTranaglyphPage, {
           item: item
         });
         break;
@@ -111,8 +87,29 @@ export class HomePage {
         });
         break;
     }
-
   }
+
+  instructionsTapped(event, item) {
+     switch(item.title) {
+      case "Tranaglyph":
+        this.navCtrl.push(InstructionsTranaglyphPage, {
+          item: item
+        });
+        break;
+      case "Snake":
+        this.navCtrl.push(InstructionsSnakePage, {
+          item: item
+        });
+        // window.location.href = "http://app.iconverge.us/snake.html";
+        break;
+      case "Drag Shape":
+        this.navCtrl.push(InstructionsDragShapePage, {
+          item: item
+        });
+        break;
+    }
+  }
+
   showBanner() {
     let bannerConfig: AdMobFreeBannerConfig = {
         isTesting: false, // Remove in production
@@ -123,6 +120,20 @@ export class HomePage {
     this.adMob.banner.config(bannerConfig);
 
     this.adMob.banner.prepare().then(() => {
+        // success
+    }).catch(e => console.log(e));
+  }
+
+  showInterstitial() {
+    let interstitialConfig: AdMobFreeInterstitialConfig = {
+        isTesting: true, // Remove in production
+        autoShow: true,
+        id: 'ca-app-pub-2057575361319869/1841783028'
+    };
+
+    this.adMob.interstitial.config(interstitialConfig);
+
+    this.adMob.interstitial.prepare().then(() => {
         // success
     }).catch(e => console.log(e));
   }

@@ -52,6 +52,8 @@
     "zone.js": "0.8.12"
   },
   "devDependencies": {
+    "@ionic-native/admob-free": "4.7.0",
+    "@ionic-native/screen-orientation": "4.7.0",
     "@ionic/app-scripts": "2.0.1",
     "@types/three": "0.84.22",
     "ionic": "3.20.0",

@@ -61,7 +61,7 @@ export class RedgreenPage {
   }
 
   ngAfterViewInit() {
-    if(this.isCordova()) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    if(this.isCordova() && !this.platform.is('tablet')) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
 
     this.canvasElement = this.canvas.nativeElement;
 
