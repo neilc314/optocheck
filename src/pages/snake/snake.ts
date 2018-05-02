@@ -54,7 +54,7 @@ export class SnakePage {
   ngAfterViewInit() {
     if (this.isCordova()){
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-        this.nativeAudio.preloadSimple('eat', '../src/eat.mp3');
+        this.nativeAudio.preloadSimple('eat', '../../assets/audio/eat.mp3');
     }
 
     this.canvasElement = this.canvas.nativeElement;

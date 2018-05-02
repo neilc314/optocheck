@@ -39,7 +39,7 @@ export class MyApp {
       // { title: '3D Tranaglyph', component: CubeTranaglyphPage},
       { title: 'Drag Shape', component: DragShapePage},
       { title: 'Snake', component: SnakePage},
-      { title: 'Configure', component: GlassConfigPage}
+      { title: 'Calibrate', component: GlassConfigPage}
     ];    
   }
 
