@@ -13,9 +13,6 @@ import { DragShapePage } from '../drag-shape/drag-shape';
 import { SnakePage } from '../snake/snake';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { GlassConfigPage } from '../glass-config/glass-config';
-import { InstructionsTranaglyphPage } from '../instructions-tranaglyph/instructions-tranaglyph';
-import { InstructionsSnakePage } from '../instructions-snake/instructions-snake';
-import { InstructionsDragShapePage } from '../instructions-drag-shape/instructions-drag-shape';
 
 @Component({
   selector: 'page-home',
@@ -26,7 +23,6 @@ export class HomePage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-  instructions: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public adMob: AdMobFree, 
     public screenOrientation: ScreenOrientation, public platform: Platform) {
@@ -67,53 +63,29 @@ export class HomePage {
   }
 
   itemTapped(event, item) {
-    if (!this.instructions) {
-      if (this.isCordova()){
-        this.showInterstitial();
-      }
-      switch(item.title) {
-        case "Tranaglyph":
-          this.navCtrl.push(RedgreenPage, {
-            item: item
-          });
-          break;
-        case "Snake":
-          this.navCtrl.push(SnakePage, {
-            item: item
-          });
-          // window.location.href = "http://app.iconverge.us/snake.html";
-          break;
-        case "Drag Shape":
-          this.navCtrl.push(DragShapePage, {
-            item: item
-          });
-          break;
-      }
+    if (this.isCordova()){
+      this.showInterstitial();
     }
-  }
-
-  instructionsTapped(event, item) {
-    this.instructions = true;
-     switch(item.title) {
+    switch(item.title) {
       case "Tranaglyph":
-        this.navCtrl.push(InstructionsTranaglyphPage, {
+        this.navCtrl.push(RedgreenPage, {
           item: item
         });
         break;
       case "Snake":
-        this.navCtrl.push(InstructionsSnakePage, {
+        this.navCtrl.push(SnakePage, {
           item: item
         });
         // window.location.href = "http://app.iconverge.us/snake.html";
         break;
       case "Drag Shape":
-        this.navCtrl.push(InstructionsDragShapePage, {
+        this.navCtrl.push(DragShapePage, {
           item: item
         });
         break;
     }
   }
-
+  
   showBanner() {
     let bannerConfig: AdMobFreeBannerConfig = {
         isTesting: false, // Remove in production
