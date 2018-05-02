@@ -17,10 +17,10 @@
 
 
 <ion-content padding>
-  <button ion-button icon-only color="light" (click)="shift(-2)"><ion-icon name="remove"></ion-icon></button>
-  <button ion-button icon-only color="light" (click)="shift(2)"><ion-icon name="add"></ion-icon></button>
-  <button ion-button color="light" (click)="reset()">Reset</button>
-  <button ion-button outline color="dark" id="vals">
+  <button large ion-button icon-only color="primary" outline (click)="shift(-2)"><ion-icon name="remove"></ion-icon></button>
+  <button large ion-button icon-only color="primary" outline (click)="shift(2)"><ion-icon name="add"></ion-icon></button>
+  <button large ion-button color="primary" (click)="reset()">Reset</button>
+  <button large ion-button float-right outline color="dark" id="vals">
     <p ng-bind="prettyShift">{{ prettyShift }}</p>
     <p ng-bind="divCon">{{ divCon }}</p>
   </button>

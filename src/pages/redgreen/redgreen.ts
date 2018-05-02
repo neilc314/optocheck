@@ -142,12 +142,15 @@ export class RedgreenPage {
     this.ctx.clearRect(0, 0, this.platform.width(), 5000);
     this.ctx.fillStyle = this.fieldColor;
     this.ctx.fillRect(0, 0, this.platform.width(), 5000);
+
+    const top = 100;
+
     if (this.platform.height() > 500) {
-      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75, 1);
-      this.drawSailboat(this.ctx, 'red', this.redX - 120, 75, 1);
+      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, top, 1);
+      this.drawSailboat(this.ctx, 'red', this.redX - 120, top, 1);
     } else if (this.platform.height() > 300) {
-      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, 75, 0.75);
-      this.drawSailboat(this.ctx, 'red', this.redX - 120, 75, 0.75  );
+      this.drawSailboat(this.ctx, 'cyan', this.greenX - 120, top, 0.75);
+      this.drawSailboat(this.ctx, 'red', this.redX - 120, top, 0.75  );
     }
 
   }
